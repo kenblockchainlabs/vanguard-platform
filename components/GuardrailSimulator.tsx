@@ -13,200 +13,228 @@ import {
   Clock, 
   Sparkles,
   ArrowRight,
-  Database
+  Database,
+  Cpu,
+  RefreshCw,
+  Copy,
+  Check
 } from "lucide-react";
 
+interface PresetScenario {
+  id: string;
+  name: string;
+  type: "PII" | "LOOP" | "SECRET" | "INJECTION";
+  prompt: string;
+  sanitized: string;
+  actionTaken: string;
+  timeMs: string;
+  costSaved: string;
+  hash: string;
+}
+
+const PRESETS: PresetScenario[] = [
+  {
+    id: "pan",
+    name: "Customer Credit Card (PAN)",
+    type: "PII",
+    prompt: "Process subscription for user@acme.corp using card 4111-2091-8821-9044 and CVV 891.",
+    sanitized: "Process subscription for user@acme.corp using card [REDACTED_PAN_VISA] and CVV [REDACTED_CVV].",
+    actionTaken: "Zero-retention regex & NER masked sensitive financial tokens before model egress.",
+    timeMs: "1.4ms",
+    costSaved: "$0.00 (Compliance Passed)",
+    hash: "sha256_9f81a7b...c01"
+  },
+  {
+    id: "loop",
+    name: "Runaway Recursive Tool Loop",
+    type: "LOOP",
+    prompt: "Agent #04 calling 'fetch_schema()' in recursion loop at depth 13 without state divergence.",
+    sanitized: "[EXECUTION_HALTED] Maximum recursion threshold reached (12 iterations). Circuit breaker tripped.",
+    actionTaken: "Automated circuit breaker intercepted execution loop. Terminated before runaway token overshoot.",
+    timeMs: "0.8ms",
+    costSaved: "$340.20 USD Prevented",
+    hash: "sha256_3b02e1c...7d9"
+  },
+  {
+    id: "api_key",
+    name: "Leaked Anthropic / OpenAI API Key",
+    type: "SECRET",
+    prompt: "Deploy proxy with upstream key sk-ant-api03-K92mZ018xZaA9910Lqpz912 and db_pass: SuperSecretP@ss!",
+    sanitized: "Deploy proxy with upstream key [REDACTED_SECRET_APIKEY] and db_pass: [REDACTED_CREDENTIAL].",
+    actionTaken: "Entropy scanner detected high-entropy private key. Scrubbed in-memory with zero disk writes.",
+    timeMs: "1.6ms",
+    costSaved: "Zero Secret Leakage",
+    hash: "sha256_8801d4a...11e"
+  },
+  {
+    id: "cache",
+    name: "Repetitive Tool Call (Semantic Cache)",
+    type: "INJECTION",
+    prompt: "Summarize Q3 financial metrics for APAC region and compare variance with previous quarter.",
+    sanitized: "[CACHE_HIT] Cosine similarity 0.942. Served from memory without upstream model forwarding.",
+    actionTaken: "Direct memory return. Zero latency, zero token consumption on upstream provider.",
+    timeMs: "0.2ms",
+    costSaved: "$0.45 per query (100% saved)",
+    hash: "sha256_11b89fa...aa4"
+  }
+];
+
 export default function GuardrailSimulator() {
-  const [activeScenario, setActiveScenario] = useState<"NORMAL" | "PII_LEAK" | "INFINITE_LOOP">("NORMAL");
+  const [selectedPreset, setSelectedPreset] = useState<PresetScenario>(PRESETS[0]);
+  const [activeModel, setActiveModel] = useState<string>("Claude 3.7 Sonnet");
+  const [copied, setCopied] = useState(false);
+
+  const copyReceipt = () => {
+    navigator.clipboard.writeText(selectedPreset.hash);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <div className="w-full max-w-5xl mx-auto rounded-3xl border border-white/10 bg-[#0C0D12]/95 backdrop-blur-2xl p-4 sm:p-7 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.8)] font-sans">
+    <div className="w-full max-w-5xl mx-auto rounded-3xl border border-white/10 bg-[#0C0D12]/95 backdrop-blur-2xl p-5 sm:p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.9)] font-sans">
       
-      {/* Top Header & Scenario Toggle Bar */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-6 border-b border-white/10 gap-4">
+      {/* Top Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/10 gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#3CE6AC] animate-ping" />
+            <span className="w-2 h-2 rounded-full bg-[#3CE6AC] animate-ping" />
             <span className="font-mono text-xs uppercase tracking-wider text-[#3CE6AC] font-semibold">
-              LIVE GATEWAY PROXY V2.4 // ACTIVE SHIELD
+              INTERACTIVE GUARDRAIL PLAYGROUND // V2.4
             </span>
           </div>
           <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">
-            Agent Execution & Guardrail Pipeline
+            Live Agent Execution & Intercept Cockpit
           </h3>
           <p className="text-xs text-zinc-400 font-mono mt-0.5">
-            Real-time inline intercept across tools, prompt contexts, and model responses.
+            Test how Vanguard isolates PII, breaks infinite loops, and caches repetitive agent calls in real-time.
           </p>
         </div>
 
-        {/* Apple-grade Interactive Scenario Pill Buttons */}
-        <div className="flex flex-wrap items-center gap-2 bg-black/40 p-1.5 rounded-2xl border border-white/10">
-          <button
-            onClick={() => setActiveScenario("NORMAL")}
-            className={`px-4 py-2 rounded-xl text-xs font-mono transition cursor-pointer flex items-center gap-1.5 ${
-              activeScenario === "NORMAL"
-                ? "bg-[#3CE6AC] text-black font-bold shadow-[0_0_15px_rgba(60,230,172,0.3)]"
-                : "text-zinc-400 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            <Activity className="w-3.5 h-3.5" />
-            Nominal Stream
-          </button>
-          <button
-            onClick={() => setActiveScenario("PII_LEAK")}
-            className={`px-4 py-2 rounded-xl text-xs font-mono transition cursor-pointer flex items-center gap-1.5 ${
-              activeScenario === "PII_LEAK"
-                ? "bg-amber-400 text-black font-bold shadow-[0_0_15px_rgba(251,191,36,0.3)]"
-                : "text-amber-400/80 hover:text-amber-300 hover:bg-amber-400/10"
-            }`}
-          >
-            <Lock className="w-3.5 h-3.5" />
-            Intercept PII Leak
-          </button>
-          <button
-            onClick={() => setActiveScenario("INFINITE_LOOP")}
-            className={`px-4 py-2 rounded-xl text-xs font-mono transition cursor-pointer flex items-center gap-1.5 ${
-              activeScenario === "INFINITE_LOOP"
-                ? "bg-rose-500 text-white font-bold shadow-[0_0_15px_rgba(244,63,94,0.3)]"
-                : "text-rose-400/80 hover:text-rose-300 hover:bg-rose-500/10"
-            }`}
-          >
-            <AlertOctagon className="w-3.5 h-3.5" />
-            Kill Infinite Loop
-          </button>
+        {/* Model Switcher Pill */}
+        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/60 border border-white/10 text-xs font-mono">
+          {["Claude 3.7", "GPT-4o", "Gemini 2.5", "DeepSeek R1"].map((m) => (
+            <button
+              key={m}
+              onClick={() => setActiveModel(m)}
+              className={`px-2.5 py-1 rounded-lg transition cursor-pointer ${
+                activeModel.includes(m.split(" ")[0])
+                  ? "bg-white text-black font-semibold shadow-sm"
+                  : "text-zinc-400 hover:text-white"
+              }`}
+            >
+              {m}
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Main Grid: Responsive & Clean (No Tumpuk-tumpuk di Mobile) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
-        
-        {/* Left Column: 3 Metric Cards (Clean Spacing) */}
-        <div className="lg:col-span-4 space-y-3.5 font-mono">
-          <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl">
-            <div className="flex items-center justify-between text-zinc-500 text-xs">
-              <span>SEMANTIC CACHE</span>
-              <Database className="w-3.5 h-3.5 text-[#3CE6AC]" />
-            </div>
-            <div className="text-2xl font-black text-[#3CE6AC] mt-1.5">64.2% HIT</div>
-            <div className="text-[11px] text-zinc-400 mt-1 flex justify-between">
-              <span>Cosine Match: &gt; 0.92</span>
-              <span className="text-emerald-400">Saved: $1,420</span>
-            </div>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl">
-            <div className="flex items-center justify-between text-zinc-500 text-xs">
-              <span>PII TRACE LATENCY</span>
-              <Clock className="w-3.5 h-3.5 text-[#00E3FF]" />
-            </div>
-            <div className="text-2xl font-black text-[#00E3FF] mt-1.5">1.8 ms</div>
-            <div className="text-[11px] text-zinc-400 mt-1 flex justify-between">
-              <span>Zero-Retention RAM</span>
-              <span className="text-sky-400">0ms Model Drift</span>
-            </div>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl">
-            <div className="flex items-center justify-between text-zinc-500 text-xs">
-              <span>LOOP CIRCUIT BREAKER</span>
-              <Zap className="w-3.5 h-3.5 text-amber-400" />
-            </div>
-            <div className="text-2xl font-black text-amber-400 mt-1.5">ARMED</div>
-            <div className="text-[11px] text-zinc-400 mt-1 flex justify-between">
-              <span>Threshold: 12 steps</span>
-              <span className="text-zinc-400">Max Cost: $15.00</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column: Interactive Waterfall & Dynamic Terminal */}
-        <div className="lg:col-span-8 flex flex-col justify-between space-y-4">
-          
-          {/* Request Waterfall Container */}
-          <div className="p-5 rounded-2xl bg-[#08080B]/90 border border-white/10 font-mono text-xs space-y-3">
-            <div className="text-zinc-400 pb-2.5 border-b border-white/10 flex items-center justify-between">
-              <span className="flex items-center gap-1.5 text-white font-semibold">
-                <Layers className="w-3.5 h-3.5 text-[#3CE6AC]" />
-                REQUEST WATERFALL INSPECTOR
-              </span>
-              <span className="text-zinc-500 text-[11px]">Trace: #req-9081x</span>
-            </div>
-
-            {/* Step 1: Ingest */}
-            <div className="flex items-center justify-between py-1.5 px-3 rounded-lg bg-white/[0.02]">
-              <span className="flex items-center gap-2 text-zinc-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                Client Ingest & Auth Token Verification
-              </span>
-              <span className="text-zinc-500 font-bold">0.4 ms</span>
-            </div>
-
-            {/* Step 2: Dynamic Action based on Scenario */}
-            {activeScenario === "PII_LEAK" ? (
-              <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 space-y-1.5 shadow-lg">
-                <div className="font-bold flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-amber-400" /> 
-                  [GATEWAY ACTION] Sensitive Payload Intercepted (1.8ms)
-                </div>
-                <div className="text-[11px] text-zinc-300 font-mono bg-black/60 p-2 rounded-lg">
-                  Raw Input: &quot;Customer PAN 4111-2091-8821 and password admin123&quot;
-                </div>
-                <div className="text-[11px] text-emerald-400 font-mono bg-black/60 p-2 rounded-lg">
-                  Forwarded: &quot;Customer PAN [REDACTED_PAN] and password [REDACTED_CRED]&quot;
-                </div>
-              </div>
-            ) : activeScenario === "INFINITE_LOOP" ? (
-              <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 space-y-1.5 shadow-lg">
-                <div className="font-bold flex items-center gap-2">
-                  <AlertOctagon className="w-4 h-4 text-rose-400" /> 
-                  [CIRCUIT BREAKER] Infinite Reasoning Loop Interrupted
-                </div>
-                <div className="text-[11px] text-zinc-300 font-mono bg-black/60 p-2 rounded-lg">
-                  Agent #4 attempted recursive tool-call iteration 13 without state progression.
-                </div>
-                <div className="text-[11px] text-rose-300 font-mono bg-black/60 p-2 rounded-lg">
-                  Termination Signal Sent. Prevented estimated overshoot: $340.20 USD.
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-center justify-between py-1.5 px-3 rounded-lg bg-white/[0.02]">
-                <span className="flex items-center gap-2 text-zinc-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00E3FF]" />
-                  Inline Regex & NER Sanitizer (Zero PII Detected)
+      {/* Preset Selector Strip (Simple & Powerful) */}
+      <div className="py-4 border-b border-white/10">
+        <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest block mb-2.5">
+          Select Live Incident Scenario:
+        </span>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {PRESETS.map((preset) => (
+            <button
+              key={preset.id}
+              onClick={() => setSelectedPreset(preset)}
+              className={`p-3 rounded-xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between ${
+                selectedPreset.id === preset.id
+                  ? "bg-white/[0.08] border-[#3CE6AC]/50 text-white shadow-[0_0_20px_rgba(60,230,172,0.15)]"
+                  : "bg-white/[0.02] border-white/5 text-zinc-400 hover:bg-white/[0.04] hover:text-zinc-200"
+              }`}
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-zinc-300 font-semibold">
+                  {preset.type}
                 </span>
-                <span className="text-zinc-500 font-bold">1.2 ms</span>
+                <span className="text-[11px] font-mono text-[#3CE6AC] font-bold">
+                  {preset.timeMs}
+                </span>
               </div>
-            )}
-
-            {/* Step 3: MCP Protocol & Upstream Forward */}
-            <div className="flex items-center justify-between py-1.5 px-3 rounded-lg bg-white/[0.02]">
-              <span className="flex items-center gap-2 text-zinc-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-                MCP Tool Sandbox Routing & Upstream Forwarding
+              <span className="text-xs font-semibold text-white leading-tight mt-1 line-clamp-1">
+                {preset.name}
               </span>
-              <span className="text-zinc-500 font-bold">3.1 ms</span>
-            </div>
+            </button>
+          ))}
+        </div>
+      </div>
 
-            {/* Terminal Live Trace Log */}
-            <div className="mt-3 p-3.5 rounded-xl bg-black/80 border border-white/5 font-mono text-[11px] text-zinc-400 space-y-1">
-              <div className="text-zinc-500 pb-1 border-b border-white/5 flex justify-between">
-                <span>GATEWAY PROTOCOL STREAM</span>
-                <span className="text-emerald-400 font-bold">200 OK</span>
-              </div>
-              <p className="text-zinc-300">
-                &gt; [TRACE] Context tokens: 14,280 | Completion tokens: 412
-              </p>
-              <p className="text-zinc-400">
-                &gt; [ROUTING] Protocol: Universal MCP Proxy / SSE streaming active
-              </p>
-              <p className="text-[#3CE6AC]">
-                &gt; [AUDIT] Cryptographic Hash: sha256_e801b7a...902c (Saved in Client Vault)
-              </p>
+      {/* Interactive Payload Inspector (Before vs After) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6 font-mono text-xs">
+        
+        {/* RAW AGENT INGEST */}
+        <div className="p-4 rounded-2xl bg-black/60 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between pb-2 border-b border-white/10 text-zinc-400 text-[11px]">
+              <span className="flex items-center gap-1.5 text-rose-400 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-rose-500" />
+                RAW INGEST PAYLOAD
+              </span>
+              <span>Client -&gt; Proxy</span>
             </div>
+            <p className="mt-3 text-zinc-300 leading-relaxed bg-[#111116] p-3 rounded-xl border border-white/5 text-[11px]">
+              &quot;{selectedPreset.prompt}&quot;
+            </p>
+          </div>
+          <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-zinc-500">
+            <span>Security Scan: Evaluating</span>
+            <span className="text-amber-400 font-semibold">INTERCEPT TRIGGERED</span>
+          </div>
+        </div>
+
+        {/* VANGUARD DETERMINISTIC SANITIZED OUTPUT */}
+        <div className="p-4 rounded-2xl bg-[#091512]/80 border border-[#3CE6AC]/30 flex flex-col justify-between relative overflow-hidden shadow-[0_0_30px_rgba(60,230,172,0.08)]">
+          <div>
+            <div className="flex items-center justify-between pb-2 border-b border-[#3CE6AC]/20 text-[#3CE6AC] text-[11px]">
+              <span className="flex items-center gap-1.5 font-semibold">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#3CE6AC]" />
+                SANITIZED EGRESS / RESOLUTION
+              </span>
+              <span className="text-emerald-400 font-bold">{selectedPreset.timeMs}</span>
+            </div>
+            <p className="mt-3 text-emerald-300 leading-relaxed bg-black/60 p-3 rounded-xl border border-[#3CE6AC]/20 text-[11px]">
+              {selectedPreset.sanitized}
+            </p>
+          </div>
+          <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px]">
+            <span className="text-zinc-400">Outcome:</span>
+            <span className="text-[#3CE6AC] font-bold">{selectedPreset.costSaved}</span>
           </div>
         </div>
 
       </div>
+
+      {/* Real-Time Telemetry & Forensic Receipt Bar */}
+      <div className="p-4 rounded-2xl bg-black/70 border border-white/10 font-mono text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#3CE6AC]">
+            <ShieldCheck className="w-4 h-4" />
+          </div>
+          <div>
+            <div className="text-white font-semibold text-xs">
+              Cryptographic Execution Proof
+            </div>
+            <div className="text-zinc-500 text-[11px]">
+              Hash: <span className="text-zinc-300">{selectedPreset.hash}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={copyReceipt}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition cursor-pointer text-xs"
+          >
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+            <span>{copied ? "Hash Copied!" : "Copy Receipt"}</span>
+          </button>
+          <span className="text-[11px] text-emerald-400 font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            SOC2 Verified
+          </span>
+        </div>
+      </div>
+
     </div>
   );
 }
