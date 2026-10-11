@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "PT Vanguard Rekayasa Cerdas — Industrial Edge Telemetry & Diagnostics",
-  description: "Enterprise condition monitoring, Modbus RTU telemetry bridge, and deterministic anomaly triage.",
+  title: "Vanguard Runtime — Enterprise AI Agent Observability & Token Guardrails",
+  description: "Deterministic rate-limiting, semantic caching, and real-time PII redaction for enterprise autonomous agent workloads.",
 };
 
 export default function RootLayout({
@@ -23,11 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-background text-brandDark selection:bg-accentMint selection:text-brandDark">
+    <html lang="en" className="dark scroll-smooth">
+      <body className={`${inter.variable} ${mono.variable} font-sans bg-[#09090B] text-zinc-100 antialiased`}>
         {children}
       </body>
     </html>

@@ -1,14 +1,14 @@
-# PT Vanguard Rekayasa Cerdas (VG-NET Telemetry Platform)
+# Vanguard Runtime — Enterprise AI Agent Observability & Guardrails
 
-Enterprise cyber-physical monitoring platform bridging legacy Modbus/SCADA industrial controllers with deterministic root-cause inference engines.
+Vanguard is an ultra-low latency gateway and observability proxy built for autonomous multi-agent systems and Model Context Protocol (MCP) integrations.
 
-## Architecture & Capabilities
-- **Deterministic Anomaly Inference:** Sub-15ms baseline detection for high-vibration rotating machinery and thermal drift.
-- **Edge Fieldbus Integration:** Dual isolated RS-485 Modbus RTU / LoRaWAN gateway aggregation.
-- **Hardware Integration:** Compatible with VG-Edge 400 DIN-rail computing nodes and VG-Sense triaxial accelerometer arrays.
-- **Security & Compliance:** Built to IEC 62443 cyber-physical specifications. Zero telemetry retention of Personally Identifiable Information (PII).
+## Core Capabilities
+- **Infinite Loop Circuit Breaker:** Detects recursive agent hallucinations and terminates execution before budget overruns.
+- **Sub-2ms Zero-Retention PII Redactor:** Redacts customer PII, secret keys, and credentials before serialization.
+- **Semantic Cache & Rate Limiting:** Reduces redundant upstream token costs by up to 64%.
+- **Cryptographic Trace Ledger:** Full execution replayability for compliance and post-mortems.
 
-## Stack
-- Next.js 16 (App Router)
-- Tailwind CSS & Recharts
-- TypeScript Strict Validation
+## Built With
+- Next.js (App Router)
+- TypeScript & Tailwind CSS
+- Model Context Protocol (MCP) Compliance
