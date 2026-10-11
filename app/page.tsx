@@ -1,5 +1,6 @@
 import React from "react";
 import LuxuryVideoShowcase from "@/components/LuxuryVideoShowcase";
+import HyperStudioCanvas from "@/components/HyperStudioCanvas";
 import GuardrailSimulator from "@/components/GuardrailSimulator";
 import { ShaderHero } from "@/components/ui/shader-hero";
 import DeveloperDocs from "@/components/DeveloperDocs";
@@ -38,13 +39,13 @@ export default function Home() {
           </div>
 
           <div className="hidden md:flex items-center gap-7 text-xs font-mono text-zinc-400">
-            <a href="#video-showcase" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
+            <a href="#studio" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3CE6AC]" />
-              Video Demo
+              Runtime Inspector
             </a>
+            <a href="#video-showcase" className="hover:text-white transition">Video Demo</a>
             <a href="#simulator" className="hover:text-white transition">Live Sandbox</a>
             <a href="#docs" className="hover:text-white transition">SDK & Docs</a>
-            <a href="#guardrails" className="hover:text-white transition">Architecture</a>
             <a href="#compliance" className="hover:text-white transition">Security</a>
           </div>
 
@@ -84,10 +85,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HIGHLIGHT: Real Rendered Architecture Video Showcase */}
+      {/* HIGHLIGHT 1: RUNTIME INSPECTOR & TIMELINE CANVAS (DIKEMBALIKAN & DISEMPURNAKAN) */}
+      <section id="studio" className="py-16 px-4 max-w-6xl mx-auto">
+        <div className="text-center mb-8">
+          <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold block">
+            DETERMINISTIC TIMELINE ENGINE
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+            Real-Time Agent Execution Studio
+          </h2>
+          <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            Watch reasoning frames, tool calls, and automated guardrail interventions unfold frame-by-frame.
+          </p>
+        </div>
+
+        <HyperStudioCanvas />
+      </section>
+
+      {/* HIGHLIGHT 2: Real Rendered Architecture Video Showcase */}
       <section id="video-showcase" className="py-16 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-6">
-          <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold block">
+          <span className="font-mono text-xs text-[#00E3FF] uppercase tracking-widest font-semibold block">
             ARCHITECTURE IN ACTION
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
