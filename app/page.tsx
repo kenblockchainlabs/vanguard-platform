@@ -1,4 +1,5 @@
 import React from "react";
+import LuxuryVideoShowcase from "@/components/LuxuryVideoShowcase";
 import HyperStudioCanvas from "@/components/HyperStudioCanvas";
 import GuardrailSimulator from "@/components/GuardrailSimulator";
 import Link from "next/link";
@@ -45,29 +46,30 @@ export default function Home() {
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-xs font-mono text-zinc-400">
-            <a href="#studio" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
+            <a href="#video-showcase" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3CE6AC]" />
-              Studio Preview
+              Video Showcase
             </a>
-            <a href="#guardrails" className="hover:text-white transition">Enterprise Guardrails</a>
+            <a href="#studio" className="hover:text-white transition">Studio Canvas</a>
+            <a href="#guardrails" className="hover:text-white transition">Guardrails</a>
             <a href="#mcp" className="hover:text-white transition">MCP Protocol</a>
-            <a href="#simulator" className="hover:text-white transition">Live Sandbox</a>
-            <a href="#compliance" className="hover:text-white transition">Security & Trust</a>
+            <a href="#simulator" className="hover:text-white transition">Sandbox</a>
+            <a href="#compliance" className="hover:text-white transition">Security</a>
           </div>
 
           <div className="flex items-center gap-3">
             <a 
-              href="#studio"
+              href="#video-showcase"
               className="px-5 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-[#3CE6AC] to-[#00E3FF] text-[#09090B] hover:brightness-110 transition shadow-[0_0_25px_rgba(60,230,172,0.35)] hover:scale-105 duration-200 cursor-pointer font-mono"
             >
-              Launch Studio →
+              Watch Video →
             </a>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-6 max-w-7xl mx-auto text-center relative">
+      <section className="pt-20 pb-10 px-6 max-w-7xl mx-auto text-center relative">
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-300 text-xs font-mono mb-8 backdrop-blur-md">
           <span className="w-2 h-2 rounded-full bg-[#3CE6AC] animate-ping" />
           <span className="text-[#3CE6AC] font-semibold">VANGUARD RUNTIME 2.4</span>
@@ -86,12 +88,12 @@ export default function Home() {
           The deterministic proxy and audit layer built for autonomous multi-agent systems and Model Context Protocol (MCP) tool executions. Zero runaway billing, sub-2ms latency, strict zero-retention compliance.
         </p>
 
-        <div className="mt-9 flex flex-wrap justify-center gap-4 font-mono">
+        <div className="mt-8 flex flex-wrap justify-center gap-4 font-mono">
           <a
-            href="#studio"
+            href="#video-showcase"
             className="px-8 py-3.5 rounded-full text-sm font-bold bg-gradient-to-r from-[#3CE6AC] to-[#00E3FF] text-[#09090B] hover:brightness-110 transition flex items-center gap-2 shadow-[0_0_35px_rgba(60,230,172,0.4)] hover:scale-105 duration-200"
           >
-            Inspect Studio Canvas <ArrowRight className="w-4 h-4"/>
+            Watch Architecture Video <ArrowRight className="w-4 h-4"/>
           </a>
           <a
             href="#simulator"
@@ -102,21 +104,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HIGHLIGHT: Canvas Studio Interactive Preview ala HyperFrames */}
-      <section id="studio" className="py-12 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-8">
-          <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold block">
-            DETERMINISTIC TIMELINE ENGINE
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-            Real-Time Agent Execution Studio
-          </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
-            Watch reasoning frames, tool calls, and automated guardrail interventions unfold frame-by-frame.
-          </p>
-        </div>
-
-        <HyperStudioCanvas />
+      {/* HIGHLIGHT 1: Real Rendered Video Showcase Video ala HyperFrames */}
+      <section id="video-showcase" className="py-6 px-4 max-w-7xl mx-auto">
+        <LuxuryVideoShowcase />
       </section>
 
       {/* Corporate Metrics Bar */}
@@ -139,6 +129,23 @@ export default function Home() {
             <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Model Context Protocol</div>
           </div>
         </div>
+      </section>
+
+      {/* HIGHLIGHT 2: Canvas Studio Interactive Preview */}
+      <section id="studio" className="py-12 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-8">
+          <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold block">
+            DETERMINISTIC TIMELINE ENGINE
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+            Real-Time Agent Execution Studio
+          </h2>
+          <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            Watch reasoning frames, tool calls, and automated guardrail interventions unfold frame-by-frame.
+          </p>
+        </div>
+
+        <HyperStudioCanvas />
       </section>
 
       {/* Interactive Simulator Section */}
