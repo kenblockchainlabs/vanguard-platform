@@ -2,6 +2,7 @@ import React from "react";
 import LuxuryVideoShowcase from "@/components/LuxuryVideoShowcase";
 import HyperStudioCanvas from "@/components/HyperStudioCanvas";
 import GuardrailSimulator from "@/components/GuardrailSimulator";
+import AnimatedMetrics from "@/components/AnimatedMetrics";
 import { ShaderHero } from "@/components/ui/shader-hero";
 import DeveloperDocs from "@/components/DeveloperDocs";
 import { VanguardLogo } from "@/components/VanguardLogo";
@@ -63,27 +64,8 @@ export default function Home() {
       {/* Next-Gen 21st.dev Apple-Grade Minimalist Shader Hero */}
       <ShaderHero />
 
-      {/* Corporate Metrics Bar */}
-      <section className="py-12 px-6 max-w-5xl mx-auto border-y border-white/10 my-6 font-mono">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div>
-            <div className="text-3xl md:text-4xl font-extrabold text-white">1.8 ms</div>
-            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">PII Masking Latency</div>
-          </div>
-          <div>
-            <div className="text-3xl md:text-4xl font-extrabold text-[#3CE6AC]">64.2%</div>
-            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Semantic Cache Hit Rate</div>
-          </div>
-          <div>
-            <div className="text-3xl md:text-4xl font-extrabold text-white">100%</div>
-            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Loop Breaker Precision</div>
-          </div>
-          <div>
-            <div className="text-3xl md:text-4xl font-extrabold text-[#00E3FF]">Sub-2ms</div>
-            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Inline Wasm Intercept</div>
-          </div>
-        </div>
-      </section>
+      {/* Corporate Metrics Bar (DENGAN ANIMASI ANGKA REAL-TIME MENGHITUNG DARI 0) */}
+      <AnimatedMetrics />
 
       {/* HIGHLIGHT 1: RUNTIME INSPECTOR & TIMELINE CANVAS (DIKEMBALIKAN & DISEMPURNAKAN) */}
       <section id="studio" className="py-16 px-4 max-w-6xl mx-auto">
