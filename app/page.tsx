@@ -3,7 +3,6 @@ import LuxuryVideoShowcase from "@/components/LuxuryVideoShowcase";
 import HyperStudioCanvas from "@/components/HyperStudioCanvas";
 import GuardrailSimulator from "@/components/GuardrailSimulator";
 import { ShaderHero } from "@/components/ui/shader-hero";
-import UniversalModelGrid from "@/components/UniversalModelGrid";
 import DeveloperDocs from "@/components/DeveloperDocs";
 import { VanguardLogo } from "@/components/VanguardLogo";
 import Link from "next/link";
@@ -44,11 +43,10 @@ export default function Home() {
           </div>
 
           <div className="hidden md:flex items-center gap-7 text-xs font-mono text-zinc-400">
-            <a href="#models" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
+            <a href="#video-showcase" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3CE6AC]" />
-              Model Registry (20+)
+              Video Demo
             </a>
-            <a href="#video-showcase" className="hover:text-white transition">Video Demo</a>
             <a href="#studio" className="hover:text-white transition">Studio Canvas</a>
             <a href="#guardrails" className="hover:text-white transition">Guardrails</a>
             <a href="#simulator" className="hover:text-white transition">Live Sandbox</a>
@@ -69,9 +67,6 @@ export default function Home() {
 
       {/* Next-Gen 21st.dev Apple-Grade Minimalist Shader Hero */}
       <ShaderHero />
-
-      {/* HIGHLIGHT: Universal Model Registry (Bukan cuma Anthropic - 20+ Models) */}
-      <UniversalModelGrid />
 
       {/* HIGHLIGHT 1: Real Rendered Video Showcase Video */}
       <section id="video-showcase" className="py-16 px-4 max-w-7xl mx-auto">
@@ -105,8 +100,8 @@ export default function Home() {
             <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Loop Breaker Precision</div>
           </div>
           <div>
-            <div className="text-3xl md:text-4xl font-extrabold text-[#00E3FF]">20+ Models</div>
-            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Universal Interop</div>
+            <div className="text-3xl md:text-4xl font-extrabold text-[#00E3FF]">Universal</div>
+            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">All Frontier Models</div>
           </div>
         </div>
       </section>
