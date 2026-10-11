@@ -3,7 +3,9 @@ import LuxuryVideoShowcase from "@/components/LuxuryVideoShowcase";
 import HyperStudioCanvas from "@/components/HyperStudioCanvas";
 import GuardrailSimulator from "@/components/GuardrailSimulator";
 import { ShaderHero } from "@/components/ui/shader-hero";
+import UniversalModelGrid from "@/components/UniversalModelGrid";
 import DeveloperDocs from "@/components/DeveloperDocs";
+import { VanguardLogo } from "@/components/VanguardLogo";
 import Link from "next/link";
 import { 
   ShieldCheck, 
@@ -27,12 +29,10 @@ export default function Home() {
       <div className="absolute inset-0 hf-grid opacity-40 pointer-events-none -z-20" />
 
       {/* Top Navbar */}
-      <nav className="border-b border-white/10 bg-[#09090B]/85 backdrop-blur-xl sticky top-0 z-50 px-6 py-4">
+      <nav className="border-b border-white/10 bg-[#09090B]/85 backdrop-blur-xl sticky top-0 z-50 px-6 py-3.5">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3.5">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#3CE6AC] to-[#00E3FF] flex items-center justify-center font-bold text-black text-sm shadow-[0_0_20px_rgba(60,230,172,0.4)]">
-              VG
-            </div>
+          <div className="flex items-center gap-3">
+            <VanguardLogo className="w-9 h-9" />
             <div>
               <span className="font-extrabold tracking-tight text-white text-base leading-none block">
                 VANGUARD
@@ -43,15 +43,16 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-8 text-xs font-mono text-zinc-400">
-            <a href="#video-showcase" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
+          <div className="hidden md:flex items-center gap-7 text-xs font-mono text-zinc-400">
+            <a href="#models" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3CE6AC]" />
-              Video Showcase
+              Model Registry (20+)
             </a>
+            <a href="#video-showcase" className="hover:text-white transition">Video Demo</a>
             <a href="#studio" className="hover:text-white transition">Studio Canvas</a>
             <a href="#guardrails" className="hover:text-white transition">Guardrails</a>
             <a href="#simulator" className="hover:text-white transition">Live Sandbox</a>
-            <a href="#docs" className="hover:text-[#3CE6AC] transition">Universal SDK</a>
+            <a href="#docs" className="hover:text-white transition">SDK & Docs</a>
             <a href="#compliance" className="hover:text-white transition">Security</a>
           </div>
 
@@ -66,8 +67,11 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Next-Gen 21st.dev Apple-Grade Minimalist Shader Hero (100% Legible & Universal) */}
+      {/* Next-Gen 21st.dev Apple-Grade Minimalist Shader Hero */}
       <ShaderHero />
+
+      {/* HIGHLIGHT: Universal Model Registry (Bukan cuma Anthropic - 20+ Models) */}
+      <UniversalModelGrid />
 
       {/* HIGHLIGHT 1: Real Rendered Video Showcase Video */}
       <section id="video-showcase" className="py-16 px-4 max-w-7xl mx-auto">
@@ -79,7 +83,7 @@ export default function Home() {
             Universal Model Triage & Telemetry
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
-            Deterministic execution monitoring across OpenAI, Anthropic, Gemini, and open weights.
+            Deterministic execution monitoring across OpenAI, Anthropic, Gemini, DeepSeek, and open weights.
           </p>
         </div>
         <LuxuryVideoShowcase />
@@ -101,8 +105,8 @@ export default function Home() {
             <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Loop Breaker Precision</div>
           </div>
           <div>
-            <div className="text-3xl md:text-4xl font-extrabold text-[#00E3FF]">Universal</div>
-            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">All Frontier Models</div>
+            <div className="text-3xl md:text-4xl font-extrabold text-[#00E3FF]">20+ Models</div>
+            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Universal Interop</div>
           </div>
         </div>
       </section>
@@ -221,14 +225,15 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Footer */}
+      {/* Footer dengan Logo Resmi Vanguard */}
       <footer className="border-t border-white/10 py-12 px-6 bg-[#09090B] font-mono text-xs text-zinc-500">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-[#3CE6AC] to-[#00E3FF] flex items-center justify-center font-bold text-black text-[10px]">
-              VG
+            <VanguardLogo className="w-8 h-8" />
+            <div>
+              <span className="font-bold text-white block">PT Vanguard Rekayasa Sistem</span>
+              <span className="text-[11px] text-zinc-500 block">© 2026 Vanguard Runtime. All rights reserved.</span>
             </div>
-            <span>© 2026 PT Vanguard Rekayasa Sistem. All rights reserved.</span>
           </div>
 
           <div className="flex items-center gap-6">
