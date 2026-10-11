@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { MeshGradient } from "@paper-design/shaders-react"
-import { ArrowRight, ShieldCheck, Activity } from "lucide-react"
+import { ArrowRight, ShieldCheck, Activity, Zap, Lock, RefreshCw, Layers } from "lucide-react"
 
 export const ShaderHero = () => {
   return (
@@ -27,14 +27,14 @@ export const ShaderHero = () => {
         </defs>
       </svg>
 
-      {/* 21st.dev Dynamic Interactive MeshGradient (background animasi hidup) */}
+      {/* 21st.dev Dynamic Interactive MeshGradient */}
       <MeshGradient
         className="absolute inset-0 w-full h-full"
         colors={["#09090B", "#0C1713", "#002B24", "#3CE6AC"]}
         speed={0.2}
       />
 
-      {/* Overlay vignette halus agar teks di tengah 100% kontras dan tajam terbaca */}
+      {/* Overlay vignette */}
       <div className="absolute inset-0 bg-radial from-transparent via-[#09090B]/40 to-[#09090B]/80 pointer-events-none" />
       <div className="absolute inset-0 hf-grid opacity-30 pointer-events-none" />
 
@@ -50,10 +50,10 @@ export const ShaderHero = () => {
           <span className="w-2 h-2 rounded-full bg-[#3CE6AC] animate-ping" />
           <span className="text-[#3CE6AC] font-semibold">VANGUARD RUNTIME 2.4</span>
           <span className="text-zinc-600">/</span>
-          <span>UNIVERSAL AI GATEWAY</span>
+          <span>DETERMINISTIC AI GATEWAY</span>
         </motion.div>
 
-        {/* Clean, Bold, 100% Legible Headline */}
+        {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,21 +62,21 @@ export const ShaderHero = () => {
         >
           Deterministic Control for{" "}
           <span className="bg-gradient-to-r from-[#3CE6AC] via-[#00E3FF] to-white bg-clip-text text-transparent">
-            All AI Model Workloads.
+            Autonomous AI Agents.
           </span>
         </motion.h1>
 
-        {/* Clean Sub-headline */}
+        {/* Sub-headline */}
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.7 }}
           className="mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-zinc-300 font-normal leading-relaxed drop-shadow-md"
         >
-          The universal proxy and guardrail layer engineered for frontier models and multi-agent workflows. Zero runaway billing, sub-2ms PII sanitization, and deterministic execution logs across any provider.
+          The deterministic proxy and guardrail layer engineered for high-volume agentic workloads. Zero runaway loops, sub-2ms PII masking, and cryptographic execution proofs.
         </motion.p>
 
-        {/* Sleek CTA Buttons */}
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -97,32 +97,49 @@ export const ShaderHero = () => {
           </a>
         </motion.div>
 
-        {/* Universal Provider Compatibility Bar */}
+        {/* GANTI DAFTAR NAMA MODEL JADI 4 KEUNGGULAN UTAMA VANGUARD */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.55, duration: 0.8 }}
-          className="mt-14 pt-8 border-t border-white/10 w-full flex flex-col items-center"
+          className="mt-14 pt-8 border-t border-white/10 w-full"
         >
-          <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest mb-4">
-            Native Interoperability with All Frontier Models & Agent Runtimes
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-zinc-300">
-            <span className="flex items-center gap-1.5 hover:text-white transition">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3CE6AC]" /> Anthropic (Claude)
-            </span>
-            <span className="flex items-center gap-1.5 hover:text-white transition">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00E3FF]" /> OpenAI (GPT-4o / o3)
-            </span>
-            <span className="flex items-center gap-1.5 hover:text-white transition">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" /> Google (Gemini 2.5)
-            </span>
-            <span className="flex items-center gap-1.5 hover:text-white transition">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" /> Meta (Llama 3.3)
-            </span>
-            <span className="flex items-center gap-1.5 hover:text-white transition">
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-400" /> DeepSeek & Open Weights
-            </span>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
+              <div className="flex items-center gap-2 text-[#3CE6AC] font-mono text-xs font-semibold">
+                <Zap className="w-3.5 h-3.5" /> Loop Breaker
+              </div>
+              <p className="text-[11px] text-zinc-400 mt-1 leading-snug">
+                Detects & halts recursive reasoning loops before token bill overruns.
+              </p>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
+              <div className="flex items-center gap-2 text-[#00E3FF] font-mono text-xs font-semibold">
+                <Lock className="w-3.5 h-3.5" /> Sub-2ms PII Mask
+              </div>
+              <p className="text-[11px] text-zinc-400 mt-1 leading-snug">
+                Zero-retention inline regex & NER strips credentials before network egress.
+              </p>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
+              <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold">
+                <RefreshCw className="w-3.5 h-3.5" /> Semantic Cache
+              </div>
+              <p className="text-[11px] text-zinc-400 mt-1 leading-snug">
+                Cosine similarity caching delivers 64.2% hit rates on repetitive tool calls.
+              </p>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
+              <div className="flex items-center gap-2 text-indigo-400 font-mono text-xs font-semibold">
+                <Layers className="w-3.5 h-3.5" /> Immutable Audit
+              </div>
+              <p className="text-[11px] text-zinc-400 mt-1 leading-snug">
+                SHA-256 cryptographic verification for every multi-agent tool execution.
+              </p>
+            </div>
           </div>
         </motion.div>
 
