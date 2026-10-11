@@ -24,11 +24,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#09090B] text-[#FAFAF9] relative overflow-hidden font-sans selection:bg-[#3CE6AC] selection:text-black">
       {/* Background Dot Grid pattern ala HyperFrames */}
-      <div className="absolute inset-0 hf-grid opacity-60 pointer-events-none -z-20" />
-
-      {/* Cyber Ambient Radial Glows */}
-      <div className="absolute top-[-5%] left-[15%] w-[800px] h-[800px] bg-gradient-to-tr from-[#3CE6AC]/20 via-[#00E3FF]/15 to-transparent rounded-full blur-[160px] pointer-events-none -z-10 animate-pulse-glow" />
-      <div className="absolute top-[35%] right-[-10%] w-[900px] h-[900px] bg-gradient-to-br from-[#00E3FF]/15 via-[#3CE6AC]/10 to-transparent rounded-full blur-[180px] pointer-events-none -z-10" />
+      <div className="absolute inset-0 hf-grid opacity-40 pointer-events-none -z-20" />
 
       {/* Top Navbar */}
       <nav className="border-b border-white/10 bg-[#09090B]/85 backdrop-blur-xl sticky top-0 z-50 px-6 py-4">
@@ -54,41 +50,43 @@ export default function Home() {
             </a>
             <a href="#studio" className="hover:text-white transition">Studio Canvas</a>
             <a href="#guardrails" className="hover:text-white transition">Guardrails</a>
-            <a href="#mcp" className="hover:text-white transition">MCP Protocol</a>
-            <a href="#simulator" className="hover:text-white transition">Sandbox</a>
-            <a href="#docs" className="hover:text-[#3CE6AC] transition">SDK & Docs</a>
+            <a href="#simulator" className="hover:text-white transition">Live Sandbox</a>
+            <a href="#docs" className="hover:text-[#3CE6AC] transition">Universal SDK</a>
             <a href="#compliance" className="hover:text-white transition">Security</a>
           </div>
 
           <div className="flex items-center gap-3">
             <a 
-              href="#video-showcase"
-              className="px-5 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-[#3CE6AC] to-[#00E3FF] text-[#09090B] hover:brightness-110 transition shadow-[0_0_25px_rgba(60,230,172,0.35)] hover:scale-105 duration-200 cursor-pointer font-mono"
+              href="#docs"
+              className="px-5 py-2 rounded-full text-xs font-semibold bg-white text-black hover:bg-zinc-200 transition duration-200 shadow-sm cursor-pointer font-mono"
             >
-              Watch Video →
+              Get Started →
             </a>
           </div>
         </div>
       </nav>
 
-      {/* Next-Gen 21st.dev Shader Hero with Framer Motion Letter Animations */}
+      {/* Next-Gen 21st.dev Apple-Grade Minimalist Shader Hero (100% Legible & Universal) */}
       <ShaderHero />
 
-      {/* HIGHLIGHT 1: Real Rendered Video Showcase Video ala HyperFrames */}
-      <section id="video-showcase" className="py-12 px-4 max-w-7xl mx-auto">
+      {/* HIGHLIGHT 1: Real Rendered Video Showcase Video */}
+      <section id="video-showcase" className="py-16 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-6">
           <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold block">
             ARCHITECTURE IN ACTION
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-            Deterministic Pipeline Execution
+            Universal Model Triage & Telemetry
           </h2>
+          <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            Deterministic execution monitoring across OpenAI, Anthropic, Gemini, and open weights.
+          </p>
         </div>
         <LuxuryVideoShowcase />
       </section>
 
       {/* Corporate Metrics Bar */}
-      <section className="py-12 px-6 max-w-6xl mx-auto border-y border-white/10 my-10 font-mono">
+      <section className="py-12 px-6 max-w-5xl mx-auto border-y border-white/10 my-10 font-mono">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
             <div className="text-3xl md:text-4xl font-extrabold text-white">1.8 ms</div>
@@ -103,14 +101,14 @@ export default function Home() {
             <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Loop Breaker Precision</div>
           </div>
           <div>
-            <div className="text-3xl md:text-4xl font-extrabold text-[#00E3FF]">MCP Ready</div>
-            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">Model Context Protocol</div>
+            <div className="text-3xl md:text-4xl font-extrabold text-[#00E3FF]">Universal</div>
+            <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">All Frontier Models</div>
           </div>
         </div>
       </section>
 
       {/* HIGHLIGHT 2: Canvas Studio Interactive Preview */}
-      <section id="studio" className="py-12 px-6 max-w-7xl mx-auto">
+      <section id="studio" className="py-16 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold block">
             DETERMINISTIC TIMELINE ENGINE
@@ -143,11 +141,11 @@ export default function Home() {
         <GuardrailSimulator/>
       </section>
 
-      {/* Developer Docs & Code Integration (PENTING UNTUK BOT REVIEWER CLAUDE) */}
+      {/* Developer Docs & Code Integration (Universal Model Support) */}
       <DeveloperDocs />
 
       {/* Feature Pillar Grid */}
-      <section id="guardrails" className="py-20 px-6 max-w-6xl mx-auto">
+      <section id="guardrails" className="py-20 px-6 max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold">
             Enterprise Architecture
@@ -167,7 +165,7 @@ export default function Home() {
                 Infinite Loop Circuit Breaker
               </h3>
               <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
-                Prevents runaway recursive reasoning before bill shock occurs. Dynamically monitors tool recursion depth, halting repetitive loops within 12 iterations while saving up to $1,800/agent incident.
+                Prevents runaway recursive reasoning before bill shock occurs. Dynamically monitors tool recursion depth, halting repetitive loops within 12 iterations across OpenAI, Claude, or Gemini workloads.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-[#3CE6AC]">
@@ -198,10 +196,10 @@ export default function Home() {
                 <Layers className="w-6 h-6"/>
               </div>
               <h3 className="text-xl font-bold text-white">
-                Model Context Protocol (MCP) Audit
+                Universal Multi-Agent Audit
               </h3>
               <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
-                Native proxy gateway for all Anthropic MCP standard servers. Cryptographically signs tool-call inputs, outputs, and side-effects for forensic compliance and SOC2 auditing.
+                Native proxy gateway for all MCP standard servers and frontier API tools. Cryptographically signs tool-call inputs, outputs, and side-effects for forensic compliance and SOC2 auditing.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-[#3CE6AC]">
