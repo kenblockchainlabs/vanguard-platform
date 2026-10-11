@@ -1,26 +1,55 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ECE9E2;
+  --foreground: #111111;
+  --surface: rgba(255, 255, 255, 0.75);
+  --surface-solid: #F4F1EA;
+  --brand-dark: #111111;
+  --accent-mint: #4EEDB2;
+  --accent-cyan: #38BDF8;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: #ECE9E2;
+  --color-foreground: #111111;
+  --color-surface: rgba(255, 255, 255, 0.75);
+  --color-surface-solid: #F4F1EA;
+  --color-brand-dark: #111111;
+  --color-accent-mint: #4EEDB2;
+  --color-accent-cyan: #38BDF8;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(78, 237, 178, 0.12) 0px, transparent 40%),
+    radial-gradient(at 85% 10%, rgba(56, 189, 248, 0.12) 0px, transparent 40%),
+    radial-gradient(at 50% 50%, rgba(244, 241, 234, 0.8) 0px, transparent 60%),
+    radial-gradient(at 20% 80%, rgba(56, 189, 248, 0.08) 0px, transparent 40%),
+    radial-gradient(at 80% 85%, rgba(78, 237, 178, 0.1) 0px, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Iridescent shimmer & glass effects */
+.iridescent-border {
+  position: relative;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.iridescent-glow {
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.05),
+    0 0 20px -5px rgba(78, 237, 178, 0.15),
+    0 0 20px -5px rgba(56, 189, 248, 0.15);
+}
+
+.iridescent-badge {
+  background: linear-gradient(135deg, rgba(78, 237, 178, 0.15), rgba(56, 189, 248, 0.15));
+  border: 1px solid rgba(78, 237, 178, 0.35);
+  color: #0f172a;
 }
