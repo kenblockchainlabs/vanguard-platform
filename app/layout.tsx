@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vanguard Platform | Autonomous Industrial Telemetry & Edge Intelligence",
-  description: "Deterministic Edge Computing, Real-Time SCADA/PLC Bridges, and Autonomous Incident Intelligence for Heavy Industry & Power Grids.",
+  title: "PT Vanguard Rekayasa Cerdas — Industrial Edge Telemetry & Diagnostics",
+  description: "Enterprise condition monitoring, Modbus RTU telemetry bridge, and deterministic anomaly triage.",
 };
 
 export default function RootLayout({
