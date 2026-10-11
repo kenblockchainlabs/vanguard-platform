@@ -2,7 +2,7 @@ import React from "react";
 import LuxuryVideoShowcase from "@/components/LuxuryVideoShowcase";
 import HyperStudioCanvas from "@/components/HyperStudioCanvas";
 import GuardrailSimulator from "@/components/GuardrailSimulator";
-import SilkShaderBackground from "@/components/SilkShaderBackground";
+import { ShaderHero } from "@/components/ui/shader-hero";
 import DeveloperDocs from "@/components/DeveloperDocs";
 import Link from "next/link";
 import { 
@@ -71,50 +71,19 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-20 pb-12 px-6 max-w-7xl mx-auto text-center relative overflow-hidden rounded-3xl">
-        {/* WebGL Silk Shader Canvas Background */}
-        <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none rounded-3xl">
-          <SilkShaderBackground className="opacity-55 mix-blend-screen" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#09090B]/30 via-transparent to-[#09090B]" />
-        </div>
-
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-300 text-xs font-mono mb-8 backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-[#3CE6AC] animate-ping" />
-          <span className="text-[#3CE6AC] font-semibold">VANGUARD RUNTIME 2.4</span>
-          <span className="text-zinc-600">|</span>
-          <span>DETERMINISTIC GUARDRAILS FOR AUTONOMOUS AGENTS</span>
-        </div>
-
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.06]">
-          Eliminate Runaway Agent Loops. <br />
-          <span className="bg-gradient-to-r from-[#3CE6AC] via-[#00E3FF] to-[#3CE6AC] bg-clip-text text-transparent">
-            Redact PII in 1.8 Milliseconds.
-          </span>
-        </h1>
-
-        <p className="mt-7 text-zinc-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-          The deterministic proxy and audit layer built for autonomous multi-agent systems and Model Context Protocol (MCP) tool executions. Zero runaway billing, sub-2ms latency, strict zero-retention compliance.
-        </p>
-
-        <div className="mt-8 flex flex-wrap justify-center gap-4 font-mono">
-          <a
-            href="#video-showcase"
-            className="px-8 py-3.5 rounded-full text-sm font-bold bg-gradient-to-r from-[#3CE6AC] to-[#00E3FF] text-[#09090B] hover:brightness-110 transition flex items-center gap-2 shadow-[0_0_35px_rgba(60,230,172,0.4)] hover:scale-105 duration-200"
-          >
-            Watch Architecture Video <ArrowRight className="w-4 h-4"/>
-          </a>
-          <a
-            href="#simulator"
-            className="px-8 py-3.5 rounded-full text-sm font-semibold border border-white/15 bg-white/[0.04] text-white hover:bg-white/10 transition backdrop-blur-md"
-          >
-            Launch Live Sandbox
-          </a>
-        </div>
-      </section>
+      {/* Next-Gen 21st.dev Shader Hero with Framer Motion Letter Animations */}
+      <ShaderHero />
 
       {/* HIGHLIGHT 1: Real Rendered Video Showcase Video ala HyperFrames */}
-      <section id="video-showcase" className="py-6 px-4 max-w-7xl mx-auto">
+      <section id="video-showcase" className="py-12 px-4 max-w-7xl mx-auto">
+        <div className="text-center mb-6">
+          <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold block">
+            ARCHITECTURE IN ACTION
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+            Deterministic Pipeline Execution
+          </h2>
+        </div>
         <LuxuryVideoShowcase />
       </section>
 
