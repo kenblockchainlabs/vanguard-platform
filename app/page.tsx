@@ -2,6 +2,7 @@ import React from "react";
 import LuxuryVideoShowcase from "@/components/LuxuryVideoShowcase";
 import HyperStudioCanvas from "@/components/HyperStudioCanvas";
 import GuardrailSimulator from "@/components/GuardrailSimulator";
+import SilkShaderBackground from "@/components/SilkShaderBackground";
 import Link from "next/link";
 import { 
   ShieldCheck, 
@@ -69,7 +70,13 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 pb-10 px-6 max-w-7xl mx-auto text-center relative">
+      <section className="pt-20 pb-12 px-6 max-w-7xl mx-auto text-center relative overflow-hidden rounded-3xl">
+        {/* WebGL Silk Shader Canvas Background */}
+        <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none rounded-3xl">
+          <SilkShaderBackground className="opacity-55 mix-blend-screen" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#09090B]/30 via-transparent to-[#09090B]" />
+        </div>
+
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-300 text-xs font-mono mb-8 backdrop-blur-md">
           <span className="w-2 h-2 rounded-full bg-[#3CE6AC] animate-ping" />
           <span className="text-[#3CE6AC] font-semibold">VANGUARD RUNTIME 2.4</span>
