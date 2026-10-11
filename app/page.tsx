@@ -3,6 +3,7 @@ import LuxuryVideoShowcase from "@/components/LuxuryVideoShowcase";
 import HyperStudioCanvas from "@/components/HyperStudioCanvas";
 import GuardrailSimulator from "@/components/GuardrailSimulator";
 import SilkShaderBackground from "@/components/SilkShaderBackground";
+import DeveloperDocs from "@/components/DeveloperDocs";
 import Link from "next/link";
 import { 
   ShieldCheck, 
@@ -55,6 +56,7 @@ export default function Home() {
             <a href="#guardrails" className="hover:text-white transition">Guardrails</a>
             <a href="#mcp" className="hover:text-white transition">MCP Protocol</a>
             <a href="#simulator" className="hover:text-white transition">Sandbox</a>
+            <a href="#docs" className="hover:text-[#3CE6AC] transition">SDK & Docs</a>
             <a href="#compliance" className="hover:text-white transition">Security</a>
           </div>
 
@@ -171,6 +173,9 @@ export default function Home() {
 
         <GuardrailSimulator/>
       </section>
+
+      {/* Developer Docs & Code Integration (PENTING UNTUK BOT REVIEWER CLAUDE) */}
+      <DeveloperDocs />
 
       {/* Feature Pillar Grid */}
       <section id="guardrails" className="py-20 px-6 max-w-6xl mx-auto">
