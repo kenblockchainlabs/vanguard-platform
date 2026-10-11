@@ -10,7 +10,7 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import { Terminal, Activity, AlertTriangle, Zap, CheckCircle2 } from "lucide-react";
+import { Terminal } from "lucide-react";
 
 type Mode = "NORMAL" | "OVERHEAT" | "VOLTAGE_SPIKE";
 
@@ -36,9 +36,9 @@ export default function TelemetrySimulator() {
     setData(initialData);
 
     setLogs([
-      "[SYSTEM INIT] Hardware polling rate: 100ms via RS-485 Modbus RTU.",
-      "[TELEMETRY STREAM] Stream channel VG-NET-4.2 established.",
-      "[INCIDENT ENGINE] Baseline deterministic anomaly model loaded.",
+      "[SYSTEM INIT] Telemetry bus active on RS-485 Modbus RTU (100ms sample).",
+      "[NODE STATUS] VG-Edge-400 stream nominal.",
+      "[INFERENCE ENGINE] Deterministic vibration baseline synchronized.",
     ]);
   }, []);
 
@@ -76,175 +76,142 @@ export default function TelemetrySimulator() {
 
     if (newMode === "OVERHEAT") {
       setLogs((prev) => [
-        `[${ts}] CRITICAL ALERT: Thermal anomaly detected on Turbine Bearing 04.`,
-        `[${ts}] SPECTRAL ANALYSIS: High-frequency resonance localized on Pump-B bearing cage.`,
-        `[${ts}] DISPATCH RECOMMENDATION: Lubricant film breakdown suspected. Auto-generated Work Order #WO-8910 sent to Maintenance SCADA.`,
+        `[${ts}] CRITICAL ALERT: Thermal threshold breached on Bearing Stage 04.`,
+        `[${ts}] SPECTRAL DIAGNOSTIC: High-frequency harmonic spikes on Pump-B.`,
+        `[${ts}] DISPATCH: Predictive Work Order #WO-8910 sent to Maintenance SCADA.`,
         ...prev.slice(0, 4),
       ]);
     } else if (newMode === "VOLTAGE_SPIKE") {
       setLogs((prev) => [
-        `[${ts}] PHASE DRIFT DETECTED: 3-Phase unbalanced current spike on Line 2.`,
-        `[${ts}] TRANSIENT EVENT: Modbus Node #12 isolated to prevent inverter flashover.`,
+        `[${ts}] VOLTAGE EVENT: 3-Phase unbalanced current transient on Line 2.`,
+        `[${ts}] ISOLATION: Modbus Node #12 isolated to safeguard power electronics.`,
         ...prev.slice(0, 4),
       ]);
     } else {
       setLogs((prev) => [
-        `[${ts}] NORMALIZATION: In-line operating conditions returned to nominal parameters.`,
+        `[${ts}] STABILIZATION: Telemetry parameters restored to nominal limits.`,
         ...prev.slice(0, 4),
       ]);
     }
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto rounded-2xl border border-stone-300/80 bg-white/75 backdrop-blur-xl p-6 sm:p-8 shadow-xl shadow-stone-900/5">
-      <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-stone-200/80 gap-4">
+    <div className="w-full max-w-6xl mx-auto rounded-3xl border border-black/10 bg-white/70 backdrop-blur-xl p-8 shadow-xl">
+      <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-black/5 gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-            </span>
-            <span className="font-mono text-xs uppercase tracking-wider text-emerald-800 font-semibold bg-emerald-100/70 px-2 py-0.5 rounded-full border border-emerald-200">
-              Telemetry Diagnostic Console v4.2
+            <span className="h-2 w-2 rounded-full bg-[#10B981] animate-ping" />
+            <span className="font-mono text-xs uppercase tracking-wider text-zinc-600 font-semibold">
+              Live Edge Diagnostics Console v4.2
             </span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mt-2 tracking-tight">
+          <h3 className="text-xl font-bold text-[#111111] mt-1 tracking-tight">
             Turbine Stage 2 — Live Modbus Node Telemetry
           </h3>
-          <p className="text-stone-500 text-xs sm:text-sm font-sans mt-0.5">
-            Real-time deterministic signal analysis streamed directly from edge compute nodes.
-          </p>
         </div>
 
-        <div className="flex items-center flex-wrap gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => handleTrigger("NORMAL")}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 border shadow-sm ${
+            className={`px-4 py-2 rounded-full text-xs font-mono transition border ${
               mode === "NORMAL"
-                ? "bg-emerald-500 text-stone-950 border-emerald-600 font-bold shadow-emerald-500/20"
-                : "bg-white text-stone-700 border-stone-200 hover:bg-stone-50"
+                ? "bg-[#111111] text-white border-transparent"
+                : "bg-white text-zinc-700 border-black/10 hover:border-black/30"
             }`}
           >
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
             Normal Flow
           </button>
           <button
             onClick={() => handleTrigger("OVERHEAT")}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 border shadow-sm ${
+            className={`px-4 py-2 rounded-full text-xs font-mono transition border ${
               mode === "OVERHEAT"
-                ? "bg-rose-600 text-white border-rose-700 font-bold shadow-rose-600/20"
-                : "bg-white text-rose-700 border-rose-200 hover:bg-rose-50"
+                ? "bg-rose-600 text-white border-transparent"
+                : "bg-white text-rose-600 border-rose-200 hover:bg-rose-50"
             }`}
           >
-            <AlertTriangle className="w-3.5 h-3.5 text-rose-500" />
-            Trigger Overheat
+            Simulate Overheat
           </button>
           <button
             onClick={() => handleTrigger("VOLTAGE_SPIKE")}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 border shadow-sm ${
+            className={`px-4 py-2 rounded-full text-xs font-mono transition border ${
               mode === "VOLTAGE_SPIKE"
-                ? "bg-amber-500 text-stone-950 border-amber-600 font-bold shadow-amber-500/20"
-                : "bg-white text-amber-800 border-amber-200 hover:bg-amber-50"
+                ? "bg-amber-600 text-white border-transparent"
+                : "bg-white text-amber-600 border-amber-200 hover:bg-amber-50"
             }`}
           >
-            <Zap className="w-3.5 h-3.5 text-amber-600" />
-            Trigger Voltage Spike
+            Simulate Voltage Spike
           </button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-        <div className="lg:col-span-2 bg-[#F4F1EA] p-5 rounded-xl border border-stone-300/70 shadow-inner">
-          <div className="flex items-center justify-between text-xs font-mono text-stone-600 mb-4 pb-2 border-b border-stone-300/60">
-            <div className="flex items-center gap-4 flex-wrap">
+        <div className="lg:col-span-2 bg-[#F9F8F6] p-5 rounded-2xl border border-black/5">
+          <div className="flex items-center justify-between text-xs font-mono text-zinc-600 mb-4">
+            <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5 font-medium">
-                <span className="w-3 h-1 rounded-full bg-emerald-500" /> Temp (°C)
+                <span className="w-2.5 h-1 rounded-full bg-emerald-500" /> Temp (°C)
               </span>
               <span className="flex items-center gap-1.5 font-medium">
-                <span className="w-3 h-1 rounded-full bg-sky-500" /> Vibration (mm/s)
+                <span className="w-2.5 h-1 rounded-full bg-sky-500" /> Vibration (mm/s)
               </span>
               <span className="flex items-center gap-1.5 font-medium">
-                <span className="w-3 h-1 rounded-full bg-amber-500" /> Current (A)
+                <span className="w-2.5 h-1 rounded-full bg-amber-500" /> Current (A)
               </span>
             </div>
-            <span className="text-stone-500 font-mono text-[11px] bg-white/70 px-2 py-0.5 rounded border border-stone-200">
-              Live 100ms Stream
-            </span>
+            <span className="text-zinc-400">100ms In-Flight</span>
           </div>
-
-          <div className="h-[270px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
+          <div className="h-[260px] w-full">
+            <ResponsiveContainer height="100%" width="100%">
               <LineChart data={data}>
-                <CartesianGrid stroke="#E2DDD4" strokeDasharray="3 3" />
-                <XAxis dataKey="time" stroke="#78716c" tick={{ fontSize: 10, fill: "#78716c" }} />
-                <YAxis stroke="#78716c" tick={{ fontSize: 10, fill: "#78716c" }} domain={["auto", "auto"]} />
+                <CartesianGrid stroke="#E5E5E0" strokeDasharray="3 3" />
+                <XAxis dataKey="time" stroke="#71717A" tick={{ fontSize: 10 }} />
+                <YAxis stroke="#71717A" tick={{ fontSize: 10 }} domain={["auto", "auto"]} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "rgba(255, 255, 255, 0.95)",
-                    borderColor: "#d6d3d1",
-                    borderRadius: "8px",
-                    boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.08)",
-                    fontSize: 12,
+                    backgroundColor: "#FFFFFF",
+                    borderColor: "#E5E7EB",
+                    borderRadius: "12px",
+                    boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+                    fontSize: "12px",
                     fontFamily: "monospace",
-                    color: "#1c1917",
                   }}
                 />
-                <Line
-                  type="monotone"
-                  dataKey="temp"
-                  stroke="#10b981"
-                  strokeWidth={2.5}
-                  dot={false}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="vibration"
-                  stroke="#0284c7"
-                  strokeWidth={2.5}
-                  dot={false}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="current"
-                  stroke="#d97706"
-                  strokeWidth={2}
-                  dot={false}
-                />
+                <Line dataKey="temp" dot={false} stroke="#10B981" strokeWidth={2.5} type="monotone" />
+                <Line dataKey="vibration" dot={false} stroke="#0284C7" strokeWidth={2.5} type="monotone" />
+                <Line dataKey="current" dot={false} stroke="#D97706" strokeWidth={2} type="monotone" />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="bg-[#111111] text-stone-100 p-5 rounded-xl border border-stone-800 flex flex-col justify-between font-mono text-xs shadow-lg">
+        <div className="bg-[#111111] text-zinc-300 p-5 rounded-2xl border border-black/10 flex flex-col justify-between font-mono text-xs">
           <div>
-            <div className="flex items-center gap-2 pb-3 mb-3 border-b border-stone-800 text-stone-300">
-              <Terminal className="w-4 h-4 text-emerald-400" />
-              <span className="font-semibold text-xs tracking-wide uppercase text-stone-200">Incident Inference Stream</span>
+            <div className="flex items-center gap-2 pb-3 mb-3 border-b border-white/10 text-zinc-400">
+              <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Inference Diagnostic Stream</span>
             </div>
-            <div className="space-y-2.5 overflow-y-auto max-h-[220px] pr-1">
+            <div className="space-y-2.5 overflow-y-auto max-h-[220px]">
               {logs.map((log, idx) => (
-                <div
+                <p
                   key={idx}
-                  className={`leading-relaxed break-words text-[11px] p-2 rounded border ${
+                  className={`leading-relaxed break-words text-[11px] ${
                     log.includes("CRITICAL")
-                      ? "text-rose-300 bg-rose-950/40 border-rose-800/60 font-semibold"
-                      : log.includes("PHASE DRIFT")
-                      ? "text-amber-300 bg-amber-950/40 border-amber-800/60 font-semibold"
-                      : log.includes("SYSTEM") || log.includes("NORMALIZATION")
-                      ? "text-emerald-300 bg-emerald-950/30 border-emerald-800/50"
-                      : "text-stone-300 bg-stone-900/60 border-stone-800"
+                      ? "text-rose-400 font-semibold"
+                      : log.includes("VOLTAGE")
+                      ? "text-amber-300"
+                      : log.includes("SYSTEM") || log.includes("STABILIZATION")
+                      ? "text-emerald-400"
+                      : "text-zinc-300"
                   }`}
                 >
                   {log}
-                </div>
+                </p>
               ))}
             </div>
           </div>
-          <div className="mt-4 pt-3 border-t border-stone-800 flex items-center justify-between text-[11px] text-stone-400">
-            <span>Model: <span className="text-stone-200 font-semibold">V-ENG-7B</span></span>
-            <span className="text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
-              Latency: 14ms
-            </span>
+          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-zinc-500">
+            <span>Model: Deterministic V-ENG-7B</span>
+            <span className="text-emerald-400">Inference: 12ms</span>
           </div>
         </div>
       </div>

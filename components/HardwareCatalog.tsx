@@ -1,5 +1,5 @@
 import React from "react";
-import { ShieldCheck, ArrowUpRight, Cpu, Layers } from "lucide-react";
+import { ShieldCheck, ArrowUpRight } from "lucide-react";
 
 const hardwareItems = [
   {
@@ -36,69 +36,60 @@ const hardwareItems = [
 
 export default function HardwareCatalog() {
   return (
-    <section className="py-16 max-w-6xl mx-auto px-4">
+    <section className="py-20 max-w-6xl mx-auto px-6">
       <div className="mb-10 text-left">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-900 text-xs font-mono font-medium mb-3">
-          <Layers className="w-3.5 h-3.5 text-emerald-600" />
-          FIELD-TESTED HARDWARE DEPLOYMENTS
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
+        <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest font-semibold">
+          Hardware Field Deployments
+        </span>
+        <h2 className="text-3xl font-extrabold text-[#111111] mt-2 tracking-tight">
           Deterministic Edge Hardware
         </h2>
-        <p className="text-stone-600 mt-2 max-w-2xl text-sm sm:text-base leading-relaxed">
+        <p className="text-zinc-600 mt-2 max-w-2xl text-sm leading-relaxed">
           Ruggedized DIN-Rail compute nodes and high-frequency sensor interfaces manufactured to interface directly with high-voltage and high-vibration plants.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {hardwareItems.map((item) => (
           <div
             key={item.id}
-            className="rounded-2xl border border-stone-300/80 bg-white/80 backdrop-blur-xl p-7 hover:border-emerald-400 hover:shadow-xl hover:shadow-stone-900/5 transition-all duration-300 flex flex-col justify-between group shadow-sm"
+            className="rounded-3xl border border-black/10 bg-white/70 backdrop-blur-xl p-8 hover:border-black/30 transition duration-300 flex flex-col justify-between shadow-sm hover:shadow-md"
           >
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-stone-200">
-                <span className="font-mono text-xs px-2.5 py-1 rounded-md bg-stone-100 text-stone-900 font-bold border border-stone-200">
+              <div className="flex items-center justify-between pb-4 border-b border-black/5">
+                <span className="font-mono text-xs px-3 py-1 rounded-full bg-[#111111] text-white">
                   {item.id}
                 </span>
-                <span className="text-xs text-stone-600 font-mono flex items-center gap-1.5 bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-200/80">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                <span className="text-xs text-zinc-500 font-mono flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
                   {item.certification}
                 </span>
               </div>
 
-              <div className="flex items-start gap-3 mt-5">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-100 to-sky-100 border border-emerald-200/60 flex items-center justify-center shrink-0 text-emerald-700">
-                  <Cpu className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-stone-900 group-hover:text-emerald-700 transition">
-                    {item.name}
-                  </h3>
-                  <p className="text-xs text-sky-700 font-mono font-medium mt-0.5">{item.category}</p>
-                </div>
-              </div>
-
-              <p className="text-stone-600 text-sm mt-4 leading-relaxed font-sans">
+              <h3 className="text-xl font-bold text-[#111111] mt-5">
+                {item.name}
+              </h3>
+              <p className="text-xs text-sky-700 font-mono mt-1 font-semibold">{item.category}</p>
+              <p className="text-zinc-600 text-sm mt-3 leading-relaxed">
                 {item.description}
               </p>
 
-              <div className="mt-6 space-y-2 border-t border-stone-200 pt-4">
+              <div className="mt-6 space-y-2 border-t border-black/5 pt-4">
                 {item.specs.map((spec, i) => (
                   <div
                     key={i}
-                    className="flex justify-between items-center text-xs font-mono py-1.5 border-b border-stone-100 last:border-0"
+                    className="flex justify-between items-center text-xs font-mono py-1.5 border-b border-black/[0.04]"
                   >
-                    <span className="text-stone-500">{spec.label}</span>
-                    <span className="text-stone-800 font-semibold text-right">{spec.value}</span>
+                    <span className="text-zinc-500">{spec.label}</span>
+                    <span className="text-zinc-900 font-medium">{spec.value}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
-              <button className="text-xs font-mono font-semibold text-stone-900 flex items-center gap-1.5 hover:text-emerald-700 transition group-hover:translate-x-0.5 duration-200">
-                Request Engineering Datasheet (PDF) <ArrowUpRight className="w-3.5 h-3.5 text-stone-500 group-hover:text-emerald-600" />
+            <div className="mt-8 pt-4 border-t border-black/5">
+              <button className="text-xs font-mono text-[#111111] font-semibold flex items-center gap-1.5 hover:text-sky-700 transition">
+                Request Engineering Datasheet (PDF) <ArrowUpRight className="w-4 h-4" />
               </button>
             </div>
           </div>
