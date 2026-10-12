@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "Vanguard Runtime — Enterprise AI Agent Observability & Token Guardrails",
-  description: "Deterministic rate-limiting, semantic caching, and real-time PII redaction for enterprise autonomous agent workloads.",
+  title: "Vanguard Motion — Code-Driven Video Synthesis & Autonomous Creative Engine",
+  description: "Headless video motion architecture for developers and autonomous AI agents. Turn HTML, CSS, and GSAP into 60 FPS broadcast video via CLI. Zero After Effects, zero cloud GPU.",
 };
 
 export default function RootLayout({

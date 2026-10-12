@@ -1,7 +1,7 @@
 import React from "react";
 import LuxuryVideoShowcase from "@/components/LuxuryVideoShowcase";
 import HyperStudioCanvas from "@/components/HyperStudioCanvas";
-import GuardrailSimulator from "@/components/GuardrailSimulator";
+import MotionSandbox from "@/components/MotionSandbox";
 import AnimatedMetrics from "@/components/AnimatedMetrics";
 import { ShaderHero } from "@/components/ui/shader-hero";
 import DeveloperDocs from "@/components/DeveloperDocs";
@@ -81,7 +81,7 @@ export default function Home() {
             You&apos;re Watching The Output.
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
-            Built with pure code: HTML, CSS, JavaScript, and HyperFrames motion runtime.
+            Built with pure code: HTML, CSS, JavaScript, and Vanguard Motion runtime.
           </p>
         </div>
         <LuxuryVideoShowcase />
@@ -118,7 +118,7 @@ export default function Home() {
           </p>
         </div>
 
-        <GuardrailSimulator/>
+        <MotionSandbox />
       </section>
 
       {/* Developer Docs & Code Integration */}

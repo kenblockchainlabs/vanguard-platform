@@ -13,19 +13,19 @@ export default function DeveloperDocs() {
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
-  const cliCode = `# 1. Initialize a new HyperFrames motion project
-npx hyperframes init my-motion-ad
+  const cliCode = `# 1. Initialize a new Vanguard Motion project
+npx vanguard-motion init my-motion-ad
 
 # 2. Add kinetic typography and 3D camera rig components
 cd my-motion-ad
-npx hyperframes add kinetic-typography camera-rig
+npx vanguard-motion add kinetic-typography camera-rig
 
 # 3. Compile directly into broadcast 1080p 60FPS MP4 (Zero Cloud GPU)
-npx hyperframes render index.html \\
+npx vanguard-motion render index.html \\
   --low-memory-mode \\
   -o dist/vanguard-broadcast-master.mp4`;
 
-  const jsCode = `import { renderComposition } from "@vanguard/motion-engine";
+  const jsCode = `import { renderComposition } from "@vanguard/motion-runtime";
 
 // Programmatically render video ads from code
 const videoArtifact = await renderComposition({
@@ -45,11 +45,11 @@ console.log("Render completed in:", videoArtifact.durationMs + "ms");
 console.log("Artifact MP4 path:", videoArtifact.outputPath);`;
 
   const agentCode = `// AI Coding Agent Workflow (Claude / Grok / Gemini)
-// Agent reads AGENTS.md, writes semantic HTML/CSS/GSAP, then runs render CLI:
+// Agent reads AGENTS.md, writes semantic HTML/CSS/GSAP, then runs Vanguard CLI:
 
 1. AGENT WRITES: index.html with <div class="hero"> and GSAP timeline
-2. AGENT CHECKS: npx hyperframes check (WCAG contrast, layout, motion checks)
-3. AGENT RENDERS: npx hyperframes render -o dist/master.mp4
+2. AGENT CHECKS: npx vanguard-motion check (WCAG contrast, layout, motion checks)
+3. AGENT RENDERS: npx vanguard-motion render -o dist/master.mp4
 4. RESULT: Broadcast-grade video generated autonomously from natural language!`;
 
   return (
@@ -79,7 +79,7 @@ console.log("Artifact MP4 path:", videoArtifact.outputPath);`;
                   : "text-zinc-400 hover:text-white hover:bg-white/5"
               }`}
             >
-              HyperFrames CLI
+              Vanguard Motion CLI
             </button>
             <button
               onClick={() => setActiveTab("js")}
@@ -105,7 +105,7 @@ console.log("Artifact MP4 path:", videoArtifact.outputPath);`;
 
           <div className="flex items-center gap-2 mt-2 sm:mt-0">
             <span className="text-[11px] text-zinc-500 font-mono">
-              npx hyperframes render
+              npx vanguard-motion render
             </span>
             <button
               onClick={() =>
