@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 function AnimatedCounter({ 
   value, 
@@ -51,43 +51,43 @@ export default function AnimatedMetrics() {
     <section className="py-12 px-6 max-w-5xl mx-auto border-y border-white/10 my-8 font-mono">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         
-        {/* Metric 1: Latency */}
+        {/* Metric 1: FPS */}
         <div className="p-2">
           <div className="text-3xl sm:text-4xl font-extrabold text-white flex items-center justify-center">
-            <AnimatedCounter value={1.8} decimals={1} suffix=" ms" />
+            <AnimatedCounter value={60} decimals={0} suffix=" FPS" />
           </div>
           <div className="text-xs text-zinc-500 mt-1.5 uppercase tracking-wider font-semibold">
-            PII Masking Latency
+            Native Render Rate
           </div>
         </div>
 
-        {/* Metric 2: Cache Hit Rate */}
+        {/* Metric 2: GPU Render Savings */}
         <div className="p-2">
           <div className="text-3xl sm:text-4xl font-extrabold text-[#3CE6AC] flex items-center justify-center">
-            <AnimatedCounter value={64.2} decimals={1} suffix="%" />
+            <AnimatedCounter value={100} decimals={0} prefix="$" suffix=" COST" />
           </div>
           <div className="text-xs text-zinc-500 mt-1.5 uppercase tracking-wider font-semibold">
-            Semantic Cache Hit Rate
+            Zero Cloud GPU Needed
           </div>
         </div>
 
-        {/* Metric 3: Precision */}
+        {/* Metric 3: Frame Accuracy */}
         <div className="p-2">
           <div className="text-3xl sm:text-4xl font-extrabold text-white flex items-center justify-center">
             <AnimatedCounter value={100} decimals={0} suffix="%" />
           </div>
           <div className="text-xs text-zinc-500 mt-1.5 uppercase tracking-wider font-semibold">
-            Loop Breaker Precision
+            Deterministic Sync
           </div>
         </div>
 
-        {/* Metric 4: Intercept Velocity */}
+        {/* Metric 4: Render Speed */}
         <div className="p-2">
           <div className="text-3xl sm:text-4xl font-extrabold text-[#00E3FF] flex items-center justify-center">
-            <AnimatedCounter value={1.4} decimals={1} prefix="< " suffix="ms" />
+            <AnimatedCounter value={18} decimals={0} prefix="< " suffix="ms" />
           </div>
           <div className="text-xs text-zinc-500 mt-1.5 uppercase tracking-wider font-semibold">
-            Inline Wasm Intercept
+            Per-Frame Compute
           </div>
         </div>
 

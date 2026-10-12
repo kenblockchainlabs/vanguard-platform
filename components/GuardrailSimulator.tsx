@@ -2,90 +2,95 @@
 
 import React, { useState } from "react";
 import { 
-  AlertOctagon, 
+  Play, 
   Terminal, 
-  Lock, 
-  ShieldCheck, 
-  Zap, 
-  Activity, 
+  Code2, 
+  Camera, 
+  Sparkles, 
   CheckCircle2, 
   Layers, 
   Clock, 
-  Sparkles,
-  ArrowRight,
-  Database,
-  Cpu,
-  RefreshCw,
-  Copy,
-  Check
+  ArrowRight, 
+  Cpu, 
+  Copy, 
+  Check,
+  Video
 } from "lucide-react";
 
 interface PresetScenario {
   id: string;
   name: string;
-  type: "PII" | "LOOP" | "SECRET" | "INJECTION";
-  prompt: string;
-  sanitized: string;
+  type: "HTML" | "GSAP" | "AUDIO" | "RENDER";
+  codeSnippet: string;
+  compiledOutput: string;
   actionTaken: string;
-  timeMs: string;
-  costSaved: string;
+  renderTime: string;
+  gpuCost: string;
   hash: string;
 }
 
 const PRESETS: PresetScenario[] = [
   {
-    id: "pan",
-    name: "Customer Credit Card (PAN)",
-    type: "PII",
-    prompt: "Process subscription for user@acme.corp using card 4111-2091-8821-9044 and CVV 891.",
-    sanitized: "Process subscription for user@acme.corp using card [REDACTED_PAN_VISA] and CVV [REDACTED_CVV].",
-    actionTaken: "Zero-retention regex & NER masked sensitive financial tokens before model egress.",
-    timeMs: "1.4ms",
-    costSaved: "$0.00 (Compliance Passed)",
-    hash: "sha256_9f81a7b...c01"
+    id: "kinetic",
+    name: "Kinetic Typography Hook",
+    type: "HTML",
+    codeSnippet: `<div class="hero">
+  <h1>Most AI ads are made by humans...</h1>
+  <span class="punchline">This one was written.</span>
+</div>`,
+    compiledOutput: `[FRAME 001-090] Rendered at 1920x1080 60FPS. Crisp anti-aliased vectors, zero compression artifacts.`,
+    actionTaken: "DOM element transformed into sub-pixel vector buffer and piped to headless Chromium.",
+    renderTime: "1.2s",
+    gpuCost: "$0.00 (Pure CPU / WASM)",
+    hash: "sha256_kinetic_9f81a7b"
   },
   {
-    id: "loop",
-    name: "Runaway Recursive Tool Loop",
-    type: "LOOP",
-    prompt: "Agent #04 calling 'fetch_schema()' in recursion loop at depth 13 without state divergence.",
-    sanitized: "[EXECUTION_HALTED] Maximum recursion threshold reached (12 iterations). Circuit breaker tripped.",
-    actionTaken: "Automated circuit breaker intercepted execution loop. Terminated before runaway token overshoot.",
-    timeMs: "0.8ms",
-    costSaved: "$340.20 USD Prevented",
-    hash: "sha256_3b02e1c...7d9"
+    id: "camera",
+    name: "3D GSAP Camera Whip-Pan",
+    type: "GSAP",
+    codeSnippet: `tl.fromTo("#viewport-cam", 
+  { scale: 1.35, rotationZ: 2 }, 
+  { scale: 1.0, rotationZ: 0, duration: 0.8, ease: "expo.out" }
+);`,
+    compiledOutput: `[CAMERA MATRIX] Perspective: 1000px | Roll: -1.2deg | Punch-in zoom snap executed at t=7.0s.`,
+    actionTaken: "GSAP timeline evaluated frame-by-frame with deterministic millisecond seeking.",
+    renderTime: "2.4s",
+    gpuCost: "$0.00 (Zero After Effects)",
+    hash: "sha256_cam_3b02e1c"
   },
   {
-    id: "api_key",
-    name: "Leaked Anthropic / OpenAI API Key",
-    type: "SECRET",
-    prompt: "Deploy proxy with upstream key sk-ant-api03-K92mZ018xZaA9910Lqpz912 and db_pass: SuperSecretP@ss!",
-    sanitized: "Deploy proxy with upstream key [REDACTED_SECRET_APIKEY] and db_pass: [REDACTED_CREDENTIAL].",
-    actionTaken: "Entropy scanner detected high-entropy private key. Scrubbed in-memory with zero disk writes.",
-    timeMs: "1.6ms",
-    costSaved: "Zero Secret Leakage",
-    hash: "sha256_8801d4a...11e"
+    id: "audio",
+    name: "Synth Bass & VO Sync",
+    type: "AUDIO",
+    codeSnippet: `<audio src="synth_bass.aac" data-start="0" data-volume="1" />
+<audio src="voiceover_chris.aac" data-start="0.8" data-duck="3dB" />`,
+    compiledOutput: `[AUDIO MUX] 48000Hz stereo AAC muxed. VO ducked -3dB under synth bass beat peak.`,
+    actionTaken: "Multi-track audio waveform synchronized to video frames with zero drift.",
+    renderTime: "0.8s",
+    gpuCost: "$0.00 (FFmpeg Native)",
+    hash: "sha256_audio_8c91a0f"
   },
   {
-    id: "cache",
-    name: "Repetitive Tool Call (Semantic Cache)",
-    type: "INJECTION",
-    prompt: "Summarize Q3 financial metrics for APAC region and compare variance with previous quarter.",
-    sanitized: "[CACHE_HIT] Cosine similarity 0.942. Served from memory without upstream model forwarding.",
-    actionTaken: "Direct memory return. Zero latency, zero token consumption on upstream provider.",
-    timeMs: "0.2ms",
-    costSaved: "$0.45 per query (100% saved)",
-    hash: "sha256_11b89fa...aa4"
+    id: "cli",
+    name: "Headless CLI Compile",
+    type: "RENDER",
+    codeSnippet: `$ npx hyperframes render index.html \\
+  --low-memory-mode \\
+  -o dist/broadcast-master.mp4`,
+    compiledOutput: `[ARTIFACT COMPILED] 30.0s 1080p MP4 written in 2m 16s. Ready for Twitter/X, TikTok & YouTube.`,
+    actionTaken: "Zero cloud GPU dependencies. Runs directly inside cheap Linux VPS or local CLI.",
+    renderTime: "Instant",
+    gpuCost: "$0.00 (100% Local Run)",
+    hash: "sha256_render_4d12e8b"
   }
 ];
 
 export default function GuardrailSimulator() {
-  const [selectedPreset, setSelectedPreset] = useState<PresetScenario>(PRESETS[0]);
-  const [activeModel, setActiveModel] = useState<string>("Claude 3.7 Sonnet");
+  const [activeScenario, setActiveScenario] = useState<PresetScenario>(PRESETS[0]);
   const [copied, setCopied] = useState(false);
 
-  const copyReceipt = () => {
-    navigator.clipboard.writeText(selectedPreset.hash);
+  const copyHash = () => {
+    navigator.clipboard.writeText(activeScenario.hash);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -99,138 +104,136 @@ export default function GuardrailSimulator() {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#3CE6AC] animate-ping" />
             <span className="font-mono text-xs uppercase tracking-wider text-[#3CE6AC] font-semibold">
-              INTERACTIVE GUARDRAIL PLAYGROUND // V2.4
+              INTERACTIVE CODE-TO-VIDEO SANDBOX // V2.4
             </span>
           </div>
           <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">
-            Live Agent Execution & Intercept Cockpit
+            Test Real-Time Motion Compilation
           </h3>
           <p className="text-xs text-zinc-400 font-mono mt-0.5">
-            Test how Vanguard isolates PII, breaks infinite loops, and caches repetitive agent calls in real-time.
+            Select a code pattern below to see how HTML, CSS, and GSAP are compiled directly into broadcast video.
           </p>
         </div>
 
-        {/* Model Switcher Pill */}
+        {/* Engine Pills */}
         <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/60 border border-white/10 text-xs font-mono">
-          {["Claude 3.7", "GPT-4o", "Gemini 2.5", "DeepSeek R1"].map((m) => (
-            <button
-              key={m}
-              onClick={() => setActiveModel(m)}
-              className={`px-2.5 py-1 rounded-lg transition cursor-pointer ${
-                activeModel.includes(m.split(" ")[0])
-                  ? "bg-white text-black font-semibold shadow-sm"
-                  : "text-zinc-400 hover:text-white"
-              }`}
-            >
-              {m}
-            </button>
-          ))}
+          <span className="px-2.5 py-1 rounded-lg bg-white text-black font-semibold shadow-sm">
+            HyperFrames
+          </span>
+          <span className="px-2.5 py-1 rounded-lg text-zinc-400">
+            Chromium Headless
+          </span>
+          <span className="px-2.5 py-1 rounded-lg text-zinc-400">
+            FFmpeg Native
+          </span>
         </div>
       </div>
 
-      {/* Preset Selector Strip (Simple & Powerful) */}
+      {/* Scenario Selector */}
       <div className="py-4 border-b border-white/10">
         <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest block mb-2.5">
-          Select Live Incident Scenario:
+          Select Motion Pipeline Element:
         </span>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          {PRESETS.map((preset) => (
+          {PRESETS.map((scenario) => (
             <button
-              key={preset.id}
-              onClick={() => setSelectedPreset(preset)}
+              key={scenario.id}
+              onClick={() => setActiveScenario(scenario)}
               className={`p-3 rounded-xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between ${
-                selectedPreset.id === preset.id
+                activeScenario.id === scenario.id
                   ? "bg-white/[0.08] border-[#3CE6AC]/50 text-white shadow-[0_0_20px_rgba(60,230,172,0.15)]"
                   : "bg-white/[0.02] border-white/5 text-zinc-400 hover:bg-white/[0.04] hover:text-zinc-200"
               }`}
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-zinc-300 font-semibold">
-                  {preset.type}
+                  {scenario.type}
                 </span>
                 <span className="text-[11px] font-mono text-[#3CE6AC] font-bold">
-                  {preset.timeMs}
+                  {scenario.renderTime}
                 </span>
               </div>
               <span className="text-xs font-semibold text-white leading-tight mt-1 line-clamp-1">
-                {preset.name}
+                {scenario.name}
               </span>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Interactive Payload Inspector (Before vs After) */}
+      {/* Compare View: Raw Code In vs Rendered Output */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6 font-mono text-xs">
         
-        {/* RAW AGENT INGEST */}
+        {/* Source Code */}
         <div className="p-4 rounded-2xl bg-black/60 border border-white/10 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-2 border-b border-white/10 text-zinc-400 text-[11px]">
-              <span className="flex items-center gap-1.5 text-rose-400 font-semibold">
-                <span className="w-2 h-2 rounded-full bg-rose-500" />
-                RAW INGEST PAYLOAD
+              <span className="flex items-center gap-1.5 text-[#3CE6AC] font-semibold">
+                <Code2 className="w-3.5 h-3.5" />
+                SOURCE CODE INPUT
               </span>
-              <span>Client -&gt; Proxy</span>
+              <span>index.html / gsap.js</span>
             </div>
-            <p className="mt-3 text-zinc-300 leading-relaxed bg-[#111116] p-3 rounded-xl border border-white/5 text-[11px]">
-              &quot;{selectedPreset.prompt}&quot;
-            </p>
+            <pre className="mt-3 text-zinc-300 leading-relaxed bg-[#111116] p-3 rounded-xl border border-white/5 text-[11px] overflow-x-auto whitespace-pre-wrap">
+              {activeScenario.codeSnippet}
+            </pre>
           </div>
           <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-zinc-500">
-            <span>Security Scan: Evaluating</span>
-            <span className="text-amber-400 font-semibold">INTERCEPT TRIGGERED</span>
+            <span>Compiler: Evaluating DOM Nodes</span>
+            <span className="text-[#3CE6AC] font-semibold">HEADLESS ACTIVE</span>
           </div>
         </div>
 
-        {/* VANGUARD DETERMINISTIC SANITIZED OUTPUT */}
+        {/* Render Output */}
         <div className="p-4 rounded-2xl bg-[#091512]/80 border border-[#3CE6AC]/30 flex flex-col justify-between relative overflow-hidden shadow-[0_0_30px_rgba(60,230,172,0.08)]">
           <div>
             <div className="flex items-center justify-between pb-2 border-b border-[#3CE6AC]/20 text-[#3CE6AC] text-[11px]">
               <span className="flex items-center gap-1.5 font-semibold">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#3CE6AC]" />
-                SANITIZED EGRESS / RESOLUTION
+                COMPILED BROADCAST VIDEO
               </span>
-              <span className="text-emerald-400 font-bold">{selectedPreset.timeMs}</span>
+              <span className="text-emerald-400 font-bold">
+                {activeScenario.renderTime}
+              </span>
             </div>
             <p className="mt-3 text-emerald-300 leading-relaxed bg-black/60 p-3 rounded-xl border border-[#3CE6AC]/20 text-[11px]">
-              {selectedPreset.sanitized}
+              {activeScenario.compiledOutput}
             </p>
           </div>
           <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px]">
-            <span className="text-zinc-400">Outcome:</span>
-            <span className="text-[#3CE6AC] font-bold">{selectedPreset.costSaved}</span>
+            <span className="text-zinc-400">Compute Cost:</span>
+            <span className="text-[#3CE6AC] font-bold">{activeScenario.gpuCost}</span>
           </div>
         </div>
 
       </div>
 
-      {/* Real-Time Telemetry & Forensic Receipt Bar */}
+      {/* Execution Proof Banner */}
       <div className="p-4 rounded-2xl bg-black/70 border border-white/10 font-mono text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#3CE6AC]">
-            <ShieldCheck className="w-4 h-4" />
+            <Video className="w-4 h-4" />
           </div>
           <div>
             <div className="text-white font-semibold text-xs">
-              Cryptographic Execution Proof
+              Deterministic Video Compilation Proof
             </div>
             <div className="text-zinc-500 text-[11px]">
-              Hash: <span className="text-zinc-300">{selectedPreset.hash}</span>
+              Pipeline Action: <span className="text-zinc-300">{activeScenario.actionTaken}</span>
             </div>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={copyReceipt}
+          <button 
+            onClick={copyHash}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition cursor-pointer text-xs"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copied ? "Hash Copied!" : "Copy Receipt"}</span>
+            <span>{copied ? "Copied" : "Copy Hash"}</span>
           </button>
           <span className="text-[11px] text-emerald-400 font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-            SOC2 Verified
+            60 FPS Verified
           </span>
         </div>
       </div>

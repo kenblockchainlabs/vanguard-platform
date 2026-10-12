@@ -10,14 +10,16 @@ import Link from "next/link";
 import { 
   ShieldCheck, 
   ArrowRight, 
-  Lock, 
+  Terminal, 
   Zap, 
   Layers, 
-  Terminal, 
+  Video, 
   Cpu, 
   CheckCircle2,
   RefreshCw,
-  Sparkles
+  Sparkles,
+  Camera,
+  Code2
 } from "lucide-react";
 
 export default function Home() {
@@ -36,7 +38,7 @@ export default function Home() {
                 VANGUARD
               </span>
               <span className="text-[10px] text-zinc-400 font-mono block tracking-widest mt-1">
-                RUNTIME GATEWAY
+                MOTION RUNTIME
               </span>
             </div>
           </div>
@@ -46,10 +48,10 @@ export default function Home() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#3CE6AC]" />
               Output Showcase
             </a>
-            <a href="#studio" className="hover:text-white transition">Execution Studio</a>
+            <a href="#studio" className="hover:text-white transition">Motion Inspector</a>
             <a href="#simulator" className="hover:text-white transition">Live Sandbox</a>
-            <a href="#docs" className="hover:text-white transition">Skills & MCP</a>
-            <a href="#compliance" className="hover:text-white transition">Compliance</a>
+            <a href="#docs" className="hover:text-white transition">Developer Loop</a>
+            <a href="#architecture" className="hover:text-white transition">Architecture</a>
           </div>
 
           <div className="flex items-center gap-3">
@@ -66,7 +68,7 @@ export default function Home() {
       {/* Next-Gen 21st.dev Apple-Grade Minimalist Shader Hero (TIDAK DIUBAH BACKGROUND-NYA, COPY WRITING 100% SINKRON) */}
       <ShaderHero />
 
-      {/* Corporate Metrics Bar */}
+      {/* Corporate Metrics Bar: 60 FPS, $0 GPU COST, 100% Deterministic, < 18ms Compute */}
       <AnimatedMetrics />
 
       {/* HIGHLIGHT 1: Real Rendered Architecture Video Showcase (DITAMPILKAN DI ATAS AGAR LANGSUNG KELIHATAN) */}
@@ -85,17 +87,17 @@ export default function Home() {
         <LuxuryVideoShowcase />
       </section>
 
-      {/* HIGHLIGHT 2: RUNTIME INSPECTOR & TIMELINE CANVAS */}
+      {/* HIGHLIGHT 2: MOTION INSPECTOR & TIMELINE CANVAS */}
       <section id="studio" className="py-16 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <span className="font-mono text-xs text-[#00E3FF] uppercase tracking-widest font-semibold block">
-            DETERMINISTIC TIMELINE ENGINE
+            HEADLESS RENDERING STUDIO
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-            Real-Time Agent Execution Studio
+            Frame-By-Frame Execution Timeline
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
-            Watch reasoning frames, tool calls, and automated guardrail interventions unfold frame-by-frame.
+            Inspect camera rigs, kinetic typography DOM nodes, and neural audio waveforms.
           </p>
         </div>
 
@@ -106,30 +108,30 @@ export default function Home() {
       <section id="simulator" className="py-16 px-6">
         <div className="text-center mb-10 max-w-2xl mx-auto">
           <span className="font-mono text-xs text-[#00E3FF] uppercase tracking-widest font-semibold block">
-            INTERACTIVE PROTOCOL SANDBOX
+            INTERACTIVE MOTION SANDBOX
           </span>
           <h2 className="text-3xl font-extrabold text-white mt-1">
-            Test Vanguard In Real-Time
+            Test Code-To-Video In Real-Time
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-2">
-            Trigger live edge cases below to observe automated gateway protection and instant remediation.
+            Switch between animation pipelines below to see how code compiles directly into broadcast frames.
           </p>
         </div>
 
         <GuardrailSimulator/>
       </section>
 
-      {/* Developer Docs & Code Integration (Universal Model Support) */}
+      {/* Developer Docs & Code Integration */}
       <DeveloperDocs />
 
-      {/* Feature Pillar Grid — Konsep Tools & Workflow */}
-      <section id="guardrails" className="py-20 px-6 max-w-5xl mx-auto">
+      {/* Feature Pillar Grid — Mengapa Code-Driven Video adalah Masa Depan */}
+      <section id="architecture" className="py-20 px-6 max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold">
             Trained On Real Work &bull; Not Demo Scripts
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-2">
-            Workflows That Fit How You Actually Ship
+            Workflows That Fit How Developers Actually Ship
           </h2>
         </div>
 
@@ -137,65 +139,65 @@ export default function Home() {
           <div className="p-8 rounded-3xl bg-[#121215]/80 border border-white/10 hover:border-[#3CE6AC]/40 transition flex flex-col justify-between backdrop-blur-xl group shadow-lg">
             <div>
               <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-[#3CE6AC] group-hover:scale-110 transition">
-                <Zap className="w-6 h-6"/>
+                <Code2 className="w-6 h-6"/>
               </div>
               <h3 className="text-xl font-bold text-white">
-                Infinite Loop Circuit Breaker
+                Pure Semantic Web Code
               </h3>
               <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
-                Prevents runaway recursive reasoning before bill shock occurs. Dynamically monitors tool recursion depth, halting repetitive loops within 12 iterations across OpenAI, Claude, or Gemini workloads.
+                Render crisp vector typography directly from HTML, CSS, SVG, and Canvas. No pixelated text compression, no bloated video editing files.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-[#3CE6AC]">
-              99.99% Intercept Accuracy
+              Crisp Vector Quality
             </div>
           </div>
 
           <div className="p-8 rounded-3xl bg-[#121215]/80 border border-white/10 hover:border-[#00E3FF]/40 transition flex flex-col justify-between backdrop-blur-xl group shadow-lg">
             <div>
               <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-[#00E3FF] group-hover:scale-110 transition">
-                <Lock className="w-6 h-6"/>
+                <Camera className="w-6 h-6"/>
               </div>
               <h3 className="text-xl font-bold text-white">
-                Zero-Retention PII Redactor
+                GSAP 3D Camera Rigs
               </h3>
               <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
-                Sub-2ms inline regex and NER stream filter. Automatically sanitizes PAN credit cards, API keys, and sensitive tokens before payloads exit your private network perimeter.
+                Control perspective zooms, rotational tilts, and whip-pan snaps purely with GSAP timelines. Frame-rate independent and deterministic.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-[#00E3FF]">
-              1.8ms Stream Pipeline
+              3D Spatial Perspective
             </div>
           </div>
 
           <div className="p-8 rounded-3xl bg-[#121215]/80 border border-white/10 hover:border-[#3CE6AC]/40 transition flex flex-col justify-between backdrop-blur-xl group shadow-lg">
             <div>
               <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-[#3CE6AC] group-hover:scale-110 transition">
-                <Layers className="w-6 h-6"/>
+                <Cpu className="w-6 h-6"/>
               </div>
               <h3 className="text-xl font-bold text-white">
-                Skills, Hooks & MCP Servers
+                Zero Cloud GPU Dependencies
               </h3>
               <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
-                AGENTS.md hooks, MCP servers, and skill capture directly from terminal sessions. Cryptographically signs tool-call inputs, outputs, and side-effects for forensic compliance.
+                Compile broadcast 60 FPS MP4s directly on cheap Linux VPS or your local machine via headless Chromium and FFmpeg. Save thousands in render farm fees.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-[#3CE6AC]">
-              Immutable SHA-256 Receipts
+              $0.00 Cloud Render Bill
             </div>
           </div>
         </div>
       </section>
 
-      {/* Compliance & Trust Statement */}
+      {/* Compliance & Engineering Statement */}
       <section id="compliance" className="py-16 px-6 max-w-4xl mx-auto text-center border-t border-white/10 font-mono">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs mb-4">
           <ShieldCheck className="w-4 h-4" />
-          <span>ENTERPRISE COMPLIANCE & PRIVACY ASSURANCE</span>
+          <span>PRODUCTION-GRADE CODE MOTION ARCHITECTURE</span>
         </div>
-        <h2 className="text-2xl font-bold text-white">Zero Data Training &amp; Strict Tenant Isolation</h2>
+        <h2 className="text-2xl font-bold text-white">Deterministic Rendering &bull; Zero Frame Drift</h2>
         <p className="text-zinc-400 text-xs sm:text-sm mt-3 leading-relaxed max-w-2xl mx-auto">
-          Vanguard Runtime operates under strict zero-retention principles. Your agent payloads, prompt traces, and database schemas are never stored, mirrored, or used for model training. Certified for ISO 27001 and SOC2 Type II environments.
+          Built for software engineers, growth hackers, and autonomous AI agents. Every animation frame is compiled deterministically with exact millisecond timestamp alignment and uncompressed audio pipeline.
         </p>
       </section>
 
@@ -206,7 +208,7 @@ export default function Home() {
             <VanguardLogo className="w-8 h-8" />
             <div>
               <span className="font-bold text-white block">PT Vanguard Rekayasa Sistem</span>
-              <span className="text-[11px] text-zinc-500 block">&copy; 2026 Vanguard Runtime. All rights reserved.</span>
+              <span className="text-[11px] text-zinc-500 block">&copy; 2026 Vanguard Motion Runtime. All rights reserved.</span>
             </div>
           </div>
 
