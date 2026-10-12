@@ -38,15 +38,15 @@ export default function LuxuryVideoShowcase() {
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1.5 text-[#3CE6AC] font-bold">
               <span className="w-2 h-2 rounded-full bg-[#3CE6AC] animate-ping" />
-              LIVE RENDER ENGINE
+              UNIVERSAL AI MOTION ENGINE
             </span>
             <span className="text-zinc-600 hidden sm:inline">|</span>
-            <span className="text-zinc-400 hidden sm:inline">Deterministic 60 FPS Canvas</span>
+            <span className="text-zinc-400 hidden sm:inline">Any Model / Local MCP Renderer</span>
           </div>
 
           <div className="flex items-center gap-3">
             <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#00E3FF] text-[11px] font-semibold">
-              H.264 / 1080p
+              1080p 60fps · Zero After Effects
             </span>
             <div className="flex items-center gap-1.5">
               <button
@@ -86,19 +86,19 @@ export default function LuxuryVideoShowcase() {
           <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-md p-4 rounded-xl bg-[#0F0F12]/85 backdrop-blur-xl border border-white/15 shadow-2xl transition duration-300">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#3CE6AC] to-[#00E3FF] flex items-center justify-center text-black font-extrabold text-xs shadow-md">
-                VG
+                ME
               </div>
               <div>
                 <div className="font-bold text-xs text-white tracking-wide">
-                  Autonomous Runtime Pipeline
+                  Model-Agnostic Video Synthesis
                 </div>
                 <div className="text-[10px] text-zinc-400 font-mono">
-                  SHA-256 Verified Tool Execution
+                  Grok · Claude · OpenAI · Local LLM Compatible
                 </div>
               </div>
             </div>
             <p className="text-[11px] text-zinc-300 font-mono mt-2 leading-relaxed">
-              Real-time telemetry oscilloscope monitoring 4,820 tok/s with sub-2ms PII masking and loop interrupt armed.
+              Real-time frame compiler converting AI-generated HTML/CSS/Canvas directly into broadcast MP4. Zero cloud GPU costs.
             </p>
           </div>
         </div>

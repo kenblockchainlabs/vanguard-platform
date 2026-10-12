@@ -13,9 +13,11 @@ import {
   Lock, 
   Zap, 
   Layers, 
+  Terminal, 
   Cpu, 
   CheckCircle2,
-  RefreshCw
+  RefreshCw,
+  Sparkles
 } from "lucide-react";
 
 export default function Home() {
@@ -40,14 +42,14 @@ export default function Home() {
           </div>
 
           <div className="hidden md:flex items-center gap-7 text-xs font-mono text-zinc-400">
-            <a href="#studio" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
+            <a href="#video-showcase" className="hover:text-[#3CE6AC] transition flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3CE6AC]" />
-              Runtime Inspector
+              Output Showcase
             </a>
-            <a href="#video-showcase" className="hover:text-white transition">Video Demo</a>
+            <a href="#studio" className="hover:text-white transition">Execution Studio</a>
             <a href="#simulator" className="hover:text-white transition">Live Sandbox</a>
-            <a href="#docs" className="hover:text-white transition">SDK & Docs</a>
-            <a href="#compliance" className="hover:text-white transition">Security</a>
+            <a href="#docs" className="hover:text-white transition">Skills & MCP</a>
+            <a href="#compliance" className="hover:text-white transition">Compliance</a>
           </div>
 
           <div className="flex items-center gap-3">
@@ -55,22 +57,38 @@ export default function Home() {
               href="#docs"
               className="px-5 py-2 rounded-full text-xs font-semibold bg-white text-black hover:bg-zinc-200 transition duration-200 shadow-sm cursor-pointer font-mono"
             >
-              Get Started →
+              Start Building →
             </a>
           </div>
         </div>
       </nav>
 
-      {/* Next-Gen 21st.dev Apple-Grade Minimalist Shader Hero */}
+      {/* Next-Gen 21st.dev Apple-Grade Minimalist Shader Hero (TIDAK DIUBAH BACKGROUND-NYA, COPY WRITING 100% SINKRON) */}
       <ShaderHero />
 
-      {/* Corporate Metrics Bar (DENGAN ANIMASI ANGKA REAL-TIME MENGHITUNG DARI 0) */}
+      {/* Corporate Metrics Bar */}
       <AnimatedMetrics />
 
-      {/* HIGHLIGHT 1: RUNTIME INSPECTOR & TIMELINE CANVAS (DIKEMBALIKAN & DISEMPURNAKAN) */}
+      {/* HIGHLIGHT 1: Real Rendered Architecture Video Showcase (DITAMPILKAN DI ATAS AGAR LANGSUNG KELIHATAN) */}
+      <section id="video-showcase" className="py-16 px-4 max-w-6xl mx-auto">
+        <div className="text-center mb-6">
+          <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold block">
+            THE SOURCE &bull; OUTPUT DEMO
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+            You&apos;re Watching The Output.
+          </h2>
+          <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            Built with pure code: HTML, CSS, JavaScript, and HyperFrames motion runtime.
+          </p>
+        </div>
+        <LuxuryVideoShowcase />
+      </section>
+
+      {/* HIGHLIGHT 2: RUNTIME INSPECTOR & TIMELINE CANVAS */}
       <section id="studio" className="py-16 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-8">
-          <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold block">
+          <span className="font-mono text-xs text-[#00E3FF] uppercase tracking-widest font-semibold block">
             DETERMINISTIC TIMELINE ENGINE
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
@@ -82,22 +100,6 @@ export default function Home() {
         </div>
 
         <HyperStudioCanvas />
-      </section>
-
-      {/* HIGHLIGHT 2: Real Rendered Architecture Video Showcase */}
-      <section id="video-showcase" className="py-16 px-4 max-w-6xl mx-auto">
-        <div className="text-center mb-6">
-          <span className="font-mono text-xs text-[#00E3FF] uppercase tracking-widest font-semibold block">
-            ARCHITECTURE IN ACTION
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-            Universal Agent Triage & Telemetry
-          </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
-            Deterministic execution monitoring across OpenAI, Anthropic, Gemini, DeepSeek, and open weights.
-          </p>
-        </div>
-        <LuxuryVideoShowcase />
       </section>
 
       {/* Interactive Simulator Section */}
@@ -120,14 +122,14 @@ export default function Home() {
       {/* Developer Docs & Code Integration (Universal Model Support) */}
       <DeveloperDocs />
 
-      {/* Feature Pillar Grid */}
+      {/* Feature Pillar Grid — Konsep Tools & Workflow */}
       <section id="guardrails" className="py-20 px-6 max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <span className="font-mono text-xs text-[#3CE6AC] uppercase tracking-widest font-semibold">
-            Enterprise Architecture
+            Trained On Real Work &bull; Not Demo Scripts
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-2">
-            Deterministic Control Over Autonomous AI
+            Workflows That Fit How You Actually Ship
           </h2>
         </div>
 
@@ -158,7 +160,7 @@ export default function Home() {
                 Zero-Retention PII Redactor
               </h3>
               <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
-                Sub-2ms inline regex and NER stream filter. Automatically sanitizes PAN credit cards, API keys, and patient identifiers before payloads exit your private network perimeter.
+                Sub-2ms inline regex and NER stream filter. Automatically sanitizes PAN credit cards, API keys, and sensitive tokens before payloads exit your private network perimeter.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-[#00E3FF]">
@@ -172,10 +174,10 @@ export default function Home() {
                 <Layers className="w-6 h-6"/>
               </div>
               <h3 className="text-xl font-bold text-white">
-                Universal Multi-Agent Audit
+                Skills, Hooks & MCP Servers
               </h3>
               <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
-                Native proxy gateway for all MCP standard servers and frontier API tools. Cryptographically signs tool-call inputs, outputs, and side-effects for forensic compliance and SOC2 auditing.
+                AGENTS.md hooks, MCP servers, and skill capture directly from terminal sessions. Cryptographically signs tool-call inputs, outputs, and side-effects for forensic compliance.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-[#3CE6AC]">
@@ -191,20 +193,20 @@ export default function Home() {
           <ShieldCheck className="w-4 h-4" />
           <span>ENTERPRISE COMPLIANCE & PRIVACY ASSURANCE</span>
         </div>
-        <h2 className="text-2xl font-bold text-white">Zero Data Training & Strict Tenant Isolation</h2>
+        <h2 className="text-2xl font-bold text-white">Zero Data Training &amp; Strict Tenant Isolation</h2>
         <p className="text-zinc-400 text-xs sm:text-sm mt-3 leading-relaxed max-w-2xl mx-auto">
           Vanguard Runtime operates under strict zero-retention principles. Your agent payloads, prompt traces, and database schemas are never stored, mirrored, or used for model training. Certified for ISO 27001 and SOC2 Type II environments.
         </p>
       </section>
 
-      {/* Footer dengan Logo Resmi Vanguard */}
+      {/* Footer */}
       <footer className="border-t border-white/10 py-12 px-6 bg-[#09090B] font-mono text-xs text-zinc-500">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <VanguardLogo className="w-8 h-8" />
             <div>
               <span className="font-bold text-white block">PT Vanguard Rekayasa Sistem</span>
-              <span className="text-[11px] text-zinc-500 block">© 2026 Vanguard Runtime. All rights reserved.</span>
+              <span className="text-[11px] text-zinc-500 block">&copy; 2026 Vanguard Runtime. All rights reserved.</span>
             </div>
           </div>
 
